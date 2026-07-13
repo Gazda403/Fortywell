@@ -1,11 +1,14 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import WaitlistModal from '@/components/WaitlistModal';
+import dynamic from 'next/dynamic';
 import { useGSAP } from '@gsap/react';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Lazy load the waitlist modal since it is hidden on initial render
+const WaitlistModal = dynamic(() => import('@/components/WaitlistModal'), { ssr: false });
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -200,6 +203,7 @@ export default function HeroSection() {
           muted
           autoPlay
           playsInline
+          preload="auto"
           onEnded={() => setVideoEnded(true)}
           className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ${
             videoEnded ? 'opacity-0 pointer-events-none' : 'opacity-100'
@@ -227,6 +231,7 @@ export default function HeroSection() {
               alt="Fortywell logo"
               width={36}
               height={36}
+              priority
               className="rounded-full opacity-90"
             />
             <span className="font-editorial text-[#F5EFE6]/90 text-lg tracking-wide">

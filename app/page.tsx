@@ -1,10 +1,13 @@
+import dynamic from 'next/dynamic';
 import CustomCursor from '@/components/CustomCursor';
 import SmoothScrollProvider from '@/components/SmoothScrollProvider';
 import HeroSection from '@/components/HeroSection';
 import PillarRow from '@/components/PillarRow';
-import PinnedMoment from '@/components/PinnedMoment';
-import HorizontalScrollGallery from '@/components/HorizontalScrollGallery';
-import LeadCaptureFooter from '@/components/LeadCaptureFooter';
+
+// Lazy load below-the-fold heavy components to improve initial page load speed
+const PinnedMoment = dynamic(() => import('@/components/PinnedMoment'), { ssr: true });
+const HorizontalScrollGallery = dynamic(() => import('@/components/HorizontalScrollGallery'), { ssr: true });
+const LeadCaptureFooter = dynamic(() => import('@/components/LeadCaptureFooter'), { ssr: true });
 
 export default function Home() {
   return (

@@ -258,17 +258,17 @@ export default function HeroSection() {
         {/* Main hero copy */}
         <div className="flex flex-col gap-6 md:gap-8 max-w-6xl">
           {/* Tagline */}
-          <span
+          <h2
             ref={taglineRef}
-            className="text-[#92A975] text-xs tracking-[0.25em] uppercase font-sans opacity-0"
+            className="text-[#92A975] text-xs tracking-[0.25em] uppercase font-sans opacity-0 m-0"
           >
             Cortisol-Conscious Wellness
-          </span>
+          </h2>
 
           {/* Display title */}
-          <div
+          <h1
             ref={titleWrapRef}
-            className="clip-overflow flex flex-wrap gap-x-6 md:gap-x-10"
+            className="clip-overflow flex flex-wrap gap-x-6 md:gap-x-10 m-0"
             aria-label="Fortywell"
           >
             {heroWords.map((word) => (
@@ -281,7 +281,7 @@ export default function HeroSection() {
                 </span>
               </div>
             ))}
-          </div>
+          </h1>
 
           {/* Subheadline */}
           <p

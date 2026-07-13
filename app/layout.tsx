@@ -30,14 +30,56 @@ const inter = Inter({
 // ─── Metadata ────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://fortywell.com'), // Replace with actual production URL when known
   title: "Fortywell — Cortisol-Conscious Wellness for Women Over 40",
   description:
     "A cortisol-conscious approach to lower-body fluid retention, heavy legs, and metabolic stress after 40. Join the Fortywell waitlist.",
+  keywords: ["wellness for women over 40", "cortisol management", "fluid retention", "heavy legs", "perimenopause fitness", "metabolic stress"],
+  authors: [{ name: "Fortywell" }],
+  creator: "Fortywell",
+  publisher: "Fortywell",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     title: "Fortywell — Cortisol-Conscious Wellness for Women Over 40",
     description:
       "A cortisol-conscious approach to lower-body fluid retention, heavy legs, and metabolic stress after 40.",
+    url: '/',
+    siteName: 'Fortywell',
+    locale: 'en_US',
     type: "website",
+    images: [
+      {
+        url: '/0709.png',
+        width: 1200,
+        height: 630,
+        alt: 'Fortywell Wellness',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Fortywell — Cortisol-Conscious Wellness for Women Over 40",
+    description: "A cortisol-conscious approach to lower-body fluid retention, heavy legs, and metabolic stress after 40.",
+    images: ['/0709.png'],
+    creator: '@fortywell',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
   icons: {
     icon: [
@@ -50,6 +92,7 @@ export const metadata: Metadata = {
   manifest: '/site.webmanifest',
   appleWebApp: {
     title: 'Fortywell',
+    statusBarStyle: 'black-translucent',
   },
 };
 

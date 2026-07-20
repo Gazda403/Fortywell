@@ -114,7 +114,7 @@ export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const titleWrapRef = useRef<HTMLDivElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
-  const taglineRef = useRef<HTMLSpanElement>(null);
+  const taglineRef = useRef<HTMLHeadingElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);

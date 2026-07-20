@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Playfair_Display, Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 // ─── Font definitions ────────────────────────────────────────────────────────
@@ -119,7 +120,10 @@ export default function RootLayout({
       lang="en"
       className={`${cormorant.variable} ${playfair.variable} ${inter.variable}`}
     >
-      <body className="grain">{children}</body>
+      <body className="grain">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }

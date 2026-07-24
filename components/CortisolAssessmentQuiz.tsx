@@ -81,17 +81,17 @@ export default function CortisolAssessmentQuiz() {
   };
 
   return (
-    <section className="w-full bg-[#F5EFE6] border-b border-[#3A3532]/10 py-20 md:py-28 flex justify-center" aria-label="Cortisol Diagnostic Quiz">
-      <div className="editorial-container w-full max-w-4xl mx-auto flex flex-col items-center gap-10">
+    <section className="w-full bg-[#F5EFE6] border-b border-[#3A3532]/10 py-24 md:py-32 flex justify-center" aria-label="Cortisol Diagnostic Quiz">
+      <div className="editorial-container w-full max-w-5xl mx-auto flex flex-col items-center gap-12">
         {/* Section Title */}
-        <div className="text-center flex flex-col gap-3 items-center w-full max-w-xl">
+        <div className="text-center flex flex-col gap-3 items-center w-full max-w-2xl">
           <span className="text-[#92A975] text-xs tracking-[0.28em] uppercase font-sans">
             Interactive Diagnostic
           </span>
-          <h2 className="font-editorial text-3xl md:text-5xl text-[#3A3532] font-light leading-tight">
+          <h2 className="font-editorial text-3xl md:text-5xl lg:text-6xl text-[#3A3532] font-light leading-tight">
             Assess Your Cortisol-Fluid Profile
           </h2>
-          <p className="text-[#3A3532]/60 text-xs md:text-sm font-sans font-light max-w-md">
+          <p className="text-[#3A3532]/60 text-sm md:text-base font-sans font-light max-w-lg">
             Answer 3 quick questions to identify your specific fluid retention pattern and recommended reset protocol.
           </p>
         </div>
@@ -99,32 +99,32 @@ export default function CortisolAssessmentQuiz() {
         {/* Quiz Container */}
         <div
           ref={quizRef}
-          className="w-full bg-[#EFE8DC] border border-[#3A3532]/10 p-8 md:p-12 relative shadow-sm min-h-[340px] flex flex-col justify-between"
+          className="w-full bg-[#EFE8DC] border border-[#3A3532]/10 p-10 md:p-14 lg:p-16 relative shadow-sm min-h-[380px] flex flex-col justify-between"
         >
           {!isCompleted ? (
             <>
               {/* Step indicator */}
-              <div className="flex items-center justify-between pb-6 border-b border-[#3A3532]/10 text-xs font-sans text-[#3A3532]/50">
+              <div className="flex items-center justify-between pb-6 border-b border-[#3A3532]/10 text-xs md:text-sm font-sans text-[#3A3532]/50">
                 <span className="tracking-widest uppercase">Question {step + 1} of {questions.length}</span>
-                <span className="text-[#92A975] font-editorial text-base">✦</span>
+                <span className="text-[#92A975] font-editorial text-lg">✦</span>
               </div>
 
               {/* Question */}
-              <div className="my-6 flex flex-col gap-6">
-                <h3 className="font-editorial text-xl md:text-2xl text-[#3A3532] font-light">
+              <div className="my-8 flex flex-col gap-8">
+                <h3 className="font-editorial text-2xl md:text-3xl lg:text-4xl text-[#3A3532] font-light leading-tight">
                   {questions[step].title}
                 </h3>
 
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-4">
                   {questions[step].options.map((opt, idx) => (
                     <button
                       key={opt.label}
                       onClick={() => handleSelect(questions[step].id, idx)}
                       data-hover="grow"
-                      className="w-full text-left p-4 md:p-5 bg-[#F5EFE6] border border-[#3A3532]/10 hover:border-[#92A975] hover:bg-[#92A975]/5 text-[#3A3532] text-xs md:text-sm font-sans font-light tracking-wide transition-all duration-300 flex items-center justify-between group cursor-none"
+                      className="w-full text-left p-5 md:p-6 lg:p-7 bg-[#F5EFE6] border border-[#3A3532]/10 hover:border-[#92A975] hover:bg-[#92A975]/5 text-[#3A3532] text-sm md:text-base font-sans font-light tracking-wide transition-all duration-300 flex items-center justify-between group cursor-none"
                     >
                       <span>{opt.label}</span>
-                      <span className="text-[#92A975] opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                      <span className="text-[#92A975] text-lg opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                     </button>
                   ))}
                 </div>

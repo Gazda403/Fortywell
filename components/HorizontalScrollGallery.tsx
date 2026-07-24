@@ -251,8 +251,9 @@ export default function HorizontalScrollGallery() {
                   <p className="card-text text-xs leading-relaxed font-sans font-light opacity-0" style={{ color: i === 0 ? '#3A353280' : i === 1 ? '#F5EFE680' : '#3A353280' }}>
                     {card.description}
                   </p>
-                  <div className="card-text mt-auto pt-3 border-t opacity-0" style={{ borderColor: `${card.accent}20` }}>
+                  <div className="card-text mt-auto pt-3 border-t opacity-0 flex items-center justify-between" style={{ borderColor: `${card.accent}20` }}>
                     <p className="text-xs font-sans tracking-wide italic" style={{ color: card.accent }}>{card.benefit}</p>
+                    <a href="#" className="text-xs font-sans tracking-wider hover:opacity-70 transition-opacity" style={{ color: card.accent }} data-hover="grow">→ Preview</a>
                   </div>
                 </div>
               </div>
@@ -333,7 +334,7 @@ export default function HorizontalScrollGallery() {
                 </p>
 
                 <div
-                  className="pt-4 border-t"
+                  className="pt-4 border-t flex items-center justify-between"
                   style={{ borderColor: `${card.accent}25` }}
                 >
                   <p
@@ -342,6 +343,7 @@ export default function HorizontalScrollGallery() {
                   >
                     {card.benefit}
                   </p>
+                  <a href="#" className="text-xs font-sans tracking-wider" style={{ color: card.accent }}>→ Preview</a>
                 </div>
               </div>
             </div>

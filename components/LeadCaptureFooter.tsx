@@ -54,7 +54,7 @@ function AnimatedCounter({ target, prefix = '', suffix = '', label }: CounterPro
       >
         {prefix}0{suffix}
       </span>
-      <span className="text-[#F5EFE6]/45 text-xs tracking-[0.2em] uppercase font-sans">
+      <span className="text-[#F5EFE6]/60 text-xs tracking-[0.2em] uppercase font-sans">
         {label}
       </span>
     </div>
@@ -173,7 +173,7 @@ export default function LeadCaptureFooter() {
           <AnimatedCounter target={4840} label="Women on waitlist" />
           <AnimatedCounter target={87} suffix="%" label="Report less leg swelling" />
           <AnimatedCounter target={12} label="Minutes per ritual" />
-          <AnimatedCounter target={40} suffix="+" label="Women served" />
+          <AnimatedCounter target={40} suffix="+" label="Beta testers" />
         </div>
       </div>
 
@@ -190,7 +190,7 @@ export default function LeadCaptureFooter() {
           >
             You deserve a method built for who you are now.
           </h2>
-          <p className="text-[#F5EFE6]/45 text-sm leading-relaxed font-sans font-light max-w-md">
+          <p className="text-[#F5EFE6]/60 text-sm leading-relaxed font-sans font-light max-w-md">
             Join the Fortywell waitlist. Be among the first 5,000 women to access
             the Daily Reset Ritual — fully guided, science-informed, and built
             for the post-40 female body.
@@ -275,7 +275,7 @@ export default function LeadCaptureFooter() {
                     autoComplete="email"
                   />
                 </div>
-                <p className="text-[#F5EFE6]/25 text-xs font-sans tracking-wide">
+                <p className="text-[#F5EFE6]/40 text-xs font-sans tracking-wide">
                   We respect your privacy. No spam — ever.
                 </p>
               </div>
@@ -323,7 +323,7 @@ export default function LeadCaptureFooter() {
                 </button>
               </div>
 
-              <p className="text-[#F5EFE6]/20 text-xs font-sans leading-relaxed max-w-xs">
+              <p className="text-[#F5EFE6]/40 text-xs font-sans leading-relaxed max-w-xs">
                 By joining, you agree to receive occasional wellness updates from Fortywell. 
                 Unsubscribe at any time.
               </p>
@@ -334,7 +334,7 @@ export default function LeadCaptureFooter() {
 
       {/* Legal footer strip */}
       <div className="border-t border-[#F5EFE6]/8 editorial-container py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-        <span className="text-[#F5EFE6]/25 text-xs font-sans tracking-wider">
+        <span className="text-[#F5EFE6]/40 text-xs font-sans tracking-wider">
           © 2026 Fortywell. All rights reserved.
         </span>
         <div className="flex items-center gap-8">
@@ -342,7 +342,7 @@ export default function LeadCaptureFooter() {
             <a
               key={link}
               href="#"
-              className="text-[#F5EFE6]/25 text-xs font-sans tracking-wider hover:text-[#F5EFE6]/60 transition-colors duration-300"
+              className="text-[#F5EFE6]/40 text-xs font-sans tracking-wider hover:text-[#F5EFE6]/70 transition-colors duration-300"
               data-hover="grow"
             >
               {link}

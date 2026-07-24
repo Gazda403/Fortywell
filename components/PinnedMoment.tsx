@@ -174,7 +174,7 @@ export default function PinnedMoment() {
             >
               <div className="flex items-start gap-6 mb-8">
                 <span className="font-editorial text-[#92A975]/60 text-sm tracking-widest mt-1">
-                  {frag.index}
+                  ◦
                 </span>
                 <div className="w-6 h-px bg-[#92A975]/40 mt-3" />
               </div>
@@ -224,7 +224,7 @@ export default function PinnedMoment() {
             >
               <div className="flex items-center gap-4 mb-6">
                 <span className="font-editorial text-[#92A975]/70 text-sm tracking-widest">
-                  {frag.index}
+                  ◦
                 </span>
                 <div className="w-8 h-px bg-[#92A975]/30" />
               </div>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Playfair_Display, Inter } from "next/font/google";
+import { Cormorant_Garamond, Playfair_Display, Instrument_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
@@ -21,10 +21,10 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
-const inter = Inter({
+const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-  variable: "--font-inter",
+  weight: ["400", "500", "600"],
+  variable: "--font-inter",  // keeping same CSS var so no other files need changing
   display: "swap",
 });
 
@@ -118,7 +118,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${playfair.variable} ${inter.variable}`}
+      className={`${cormorant.variable} ${playfair.variable} ${instrumentSans.variable}`}
     >
       <body className="grain">
         {children}

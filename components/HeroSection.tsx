@@ -250,6 +250,18 @@ export default function HeroSection() {
               </a>
             ))}
           </nav>
+          {/* Mobile Nav Trigger */}
+          <button 
+            className="md:hidden text-[#F5EFE6]/90 flex items-center gap-2"
+            data-hover="grow"
+            aria-label="Menu"
+          >
+            <span className="text-xs tracking-widest uppercase font-sans">Menu</span>
+            <div className="w-4 h-3 flex flex-col justify-between">
+              <span className="w-full h-px bg-current"></span>
+              <span className="w-full h-px bg-current"></span>
+            </div>
+          </button>
           <span className="text-[#92A975] text-xs tracking-[0.2em] uppercase font-sans">
             Est. 2026
           </span>
@@ -282,11 +294,14 @@ export default function HeroSection() {
               </div>
             ))}
           </h1>
+          
+          {/* Anchor rule for title */}
+          <div className="w-32 h-px bg-[#F5EFE6]/20 mt-2 mb-2 hidden md:block" />
 
           {/* Subheadline */}
           <p
             ref={subRef}
-            className="text-[#F5EFE6]/75 text-sm md:text-base leading-relaxed max-w-lg font-sans font-light opacity-0"
+            className="text-[#F5EFE6]/90 text-sm md:text-base leading-relaxed max-w-lg font-sans font-light opacity-0"
           >
             A cortisol-conscious approach to lower-body fluid retention,
             heavy legs, and metabolic stress after 40.

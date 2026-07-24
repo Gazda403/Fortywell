@@ -39,8 +39,8 @@ html {
 body {
   background-color: var(--linen);
   color: var(--graphite);
-  font-family: 'Inter', system-ui, sans-serif;
-  font-weight: 300;
+  font-family: 'Instrument Sans', system-ui, sans-serif;
+  font-weight: 400;
   line-height: 1.6;
   overflow-x: hidden;
   cursor: none; /* Hide native cursor — custom cursor active */
@@ -54,6 +54,7 @@ body {
 }
 
 /* ── Custom Cursor ── */
+/* Uses transform:scale instead of width/height to avoid layout thrash (Impeccable: layout-transition fix) */
 #fw-cursor {
   position: fixed;
   top: 0;
@@ -66,24 +67,36 @@ body {
   z-index: 9999;
   mix-blend-mode: multiply;
   will-change: transform;
-  transform: translate(-50%, -50%);
-  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
               background-color 0.35s ease,
               opacity 0.2s ease;
 }
 
 #fw-cursor.grow {
-  width: 60px;
-  height: 60px;
+  transform: translate(-50%, -50%) scale(4.3);
   opacity: 0.8;
 }
 
 #fw-cursor.olive {
-  width: 52px;
-  height: 52px;
+  transform: translate(-50%, -50%) scale(3.7);
   background-color: var(--olive);
   opacity: 0.9;
+}
+
+/* ── Scroll Progress Bar ── */
+#fw-scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: var(--olive);
+  transform-origin: left;
+  transform: scaleX(0);
+  z-index: 9998;
+  will-change: transform;
+  pointer-events: none;
 }
 
 /* ── Typography ── */

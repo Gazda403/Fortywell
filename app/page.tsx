@@ -6,7 +6,9 @@ import PillarRow from '@/components/PillarRow';
 
 // Lazy load below-the-fold heavy components to improve initial page load speed
 const PinnedMoment = dynamic(() => import('@/components/PinnedMoment'), { ssr: true });
+const ExpertAdvisory = dynamic(() => import('@/components/ExpertAdvisory'), { ssr: true });
 const HorizontalScrollGallery = dynamic(() => import('@/components/HorizontalScrollGallery'), { ssr: true });
+const CortisolAssessmentQuiz = dynamic(() => import('@/components/CortisolAssessmentQuiz'), { ssr: true });
 const LeadCaptureFooter = dynamic(() => import('@/components/LeadCaptureFooter'), { ssr: true });
 
 export default function Home() {
@@ -25,10 +27,16 @@ export default function Home() {
         {/* 3 ─ Pinned moment: Left column pins, right scrolls through cortisol science */}
         <PinnedMoment />
 
-        {/* 4 ─ Horizontal scroll gallery: 3-Step Daily Reset Ritual with clip-path reveals */}
+        {/* 4 ─ Clinical & Expert Rationale */}
+        <ExpertAdvisory />
+
+        {/* 5 ─ Horizontal scroll gallery: 3-Step Daily Reset Ritual with clip-path reveals */}
         <HorizontalScrollGallery />
 
-        {/* 5 ─ Lead capture footer: Animated counters + email registration */}
+        {/* 6 ─ Interactive Diagnostic Assessment */}
+        <CortisolAssessmentQuiz />
+
+        {/* 7 ─ Lead capture footer: Animated counters + email registration */}
         <LeadCaptureFooter />
       </main>
     </SmoothScrollProvider>

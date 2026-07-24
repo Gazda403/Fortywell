@@ -84,6 +84,16 @@ body {
   opacity: 0.9;
 }
 
+#fw-cursor.has-text {
+  transform: translate(-50%, -50%) scale(5.5);
+  background-color: var(--graphite);
+  mix-blend-mode: normal;
+}
+
+#fw-cursor.has-text .cursor-label {
+  opacity: 1;
+}
+
 /* ── Scroll Progress Bar ── */
 #fw-scroll-progress {
   position: fixed;

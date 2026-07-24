@@ -1,12 +1,14 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 
 export default function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLSpanElement>(null);
   const xRef = useRef<number>(0);
   const yRef = useRef<number>(0);
+  const [cursorText, setCursorText] = useState<string>('');
 
   useEffect(() => {
     const cursor = cursorRef.current;
@@ -40,6 +42,15 @@ export default function CustomCursor() {
     const handleEnter = (e: Event) => {
       const target = e.target as HTMLElement;
       const hoverType = target.dataset.hover;
+      const text = target.dataset.cursorText;
+
+      if (text) {
+        setCursorText(text);
+        cursor.classList.add('has-text');
+      } else {
+        setCursorText('');
+        cursor.classList.remove('has-text');
+      }
 
       if (hoverType === 'grow') {
         cursor.classList.add('grow');
@@ -51,7 +62,8 @@ export default function CustomCursor() {
     };
 
     const handleLeave = () => {
-      cursor.classList.remove('grow', 'olive');
+      cursor.classList.remove('grow', 'olive', 'has-text');
+      setCursorText('');
     };
 
     // Delegated event listeners on body
@@ -71,7 +83,13 @@ export default function CustomCursor() {
       id="fw-cursor"
       ref={cursorRef}
       aria-hidden="true"
+      className="flex items-center justify-center text-[9px] tracking-widest font-sans font-medium uppercase text-[#F5EFE6] select-none"
       style={{ transform: 'translate(-50%, -50%)' }}
-    />
+    >
+      <span ref={textRef} className="cursor-label opacity-0 transition-opacity duration-300">
+        {cursorText}
+      </span>
+    </div>
   );
 }
+

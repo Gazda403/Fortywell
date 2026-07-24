@@ -10,29 +10,51 @@ gsap.registerPlugin(ScrollTrigger);
 interface PillarItem {
   label: string;
   description: string;
-  icon: string;
+  icon: (props: { className?: string }) => React.ReactNode;
 }
 
 const pillars: PillarItem[] = [
   {
     label: 'Hormone-Aware',
     description: 'Every movement calibrated to your cortisol cycle',
-    icon: '◎',
+    icon: ({ className = "w-5 h-5 text-[#92A975]" }) => (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v10M7 12h10" strokeDasharray="2 2" />
+        <circle cx="12" cy="12" r="3" />
+      </svg>
+    ),
   },
   {
     label: 'Joint-Friendly',
     description: 'Zero-impact sequences protecting changing connective tissue',
-    icon: '◈',
+    icon: ({ className = "w-5 h-5 text-[#92A975]" }) => (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7z" />
+        <circle cx="12" cy="9" r="2.5" />
+      </svg>
+    ),
   },
   {
     label: 'Real Longevity',
     description: 'Results measured in years, not weeks',
-    icon: '◇',
+    icon: ({ className = "w-5 h-5 text-[#92A975]" }) => (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M12 3v18M3 12h18" strokeWidth="1" />
+        <circle cx="12" cy="12" r="7" />
+        <path d="M12 8l3 4h-6l3-4z" />
+      </svg>
+    ),
   },
   {
     label: 'Made for You',
     description: 'Protocols designed exclusively for women over 40',
-    icon: '◉',
+    icon: ({ className = "w-5 h-5 text-[#92A975]" }) => (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z" />
+        <path d="M12 7v5l3 3" />
+      </svg>
+    ),
   },
 ];
 
@@ -82,12 +104,9 @@ export default function PillarRow() {
             <div className="absolute inset-0 bg-[#92A975]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
             <div className="relative z-10 flex flex-col gap-3">
-              <span
-                className="text-[#92A975] text-lg font-editorial"
-                aria-hidden="true"
-              >
-                {pillar.icon}
-              </span>
+              <div className="text-[#92A975] flex items-center h-6">
+                <pillar.icon />
+              </div>
               <h3 className="font-editorial text-[#3A3532] text-xl md:text-2xl font-light tracking-tight">
                 {pillar.label}
               </h3>
@@ -104,3 +123,4 @@ export default function PillarRow() {
     </section>
   );
 }
+

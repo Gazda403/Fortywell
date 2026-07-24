@@ -99,7 +99,7 @@ export default function CortisolAssessmentQuiz() {
         {/* Quiz Container */}
         <div
           ref={quizRef}
-          className="w-full bg-[#EFE8DC] border border-[#3A3532]/10 p-10 md:p-14 lg:p-16 relative shadow-sm min-h-[380px] flex flex-col justify-between"
+          className="w-full bg-[#EFE8DC] border border-[#3A3532]/10 px-8 md:px-14 lg:px-20 py-10 md:py-14 lg:py-16 relative shadow-sm min-h-[380px] flex flex-col justify-between"
         >
           {!isCompleted ? (
             <>
@@ -111,7 +111,7 @@ export default function CortisolAssessmentQuiz() {
 
               {/* Question */}
               <div className="my-8 flex flex-col gap-8">
-                <h3 className="font-editorial text-2xl md:text-3xl lg:text-4xl text-[#3A3532] font-light leading-tight">
+                <h3 className="font-editorial text-2xl md:text-3xl lg:text-4xl text-[#3A3532] font-light leading-tight px-2">
                   {questions[step].title}
                 </h3>
 
@@ -121,10 +121,10 @@ export default function CortisolAssessmentQuiz() {
                       key={opt.label}
                       onClick={() => handleSelect(questions[step].id, idx)}
                       data-hover="grow"
-                      className="w-full text-left p-5 md:p-6 lg:p-7 bg-[#F5EFE6] border border-[#3A3532]/10 hover:border-[#92A975] hover:bg-[#92A975]/5 text-[#3A3532] text-sm md:text-base font-sans font-light tracking-wide transition-all duration-300 flex items-center justify-between group cursor-none"
+                      className="w-full text-left px-8 md:px-10 lg:px-12 py-5 md:py-6 bg-[#F5EFE6] border border-[#3A3532]/10 hover:border-[#92A975] hover:bg-[#92A975]/5 text-[#3A3532] text-sm md:text-base font-sans font-light tracking-wider transition-all duration-300 flex items-center justify-between group cursor-none"
                     >
-                      <span>{opt.label}</span>
-                      <span className="text-[#92A975] text-lg opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                      <span className="pr-4">{opt.label}</span>
+                      <span className="text-[#92A975] text-lg opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0">→</span>
                     </button>
                   ))}
                 </div>

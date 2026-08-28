@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://fortywell.com/sitemap.xml',
+    sitemap: 'https://fortywell-app.vercel.app/sitemap.xml',
   };
 }

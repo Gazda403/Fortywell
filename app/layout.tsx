@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Playfair_Display, Instrument_Sans } from "next/font/google";
-import { Analytics } from "@vercel/analytics/next";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
 // ─── Font definitions ────────────────────────────────────────────────────────
@@ -31,7 +31,7 @@ const instrumentSans = Instrument_Sans({
 // ─── Metadata ────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://fortywell.com'), // Replace with actual production URL when known
+  metadataBase: new URL('https://fortywell-app.vercel.app'),
   title: "Fortywell — Cortisol-Conscious Wellness for Women Over 40",
   description:
     "A cortisol-conscious approach to lower-body fluid retention, heavy legs, and metabolic stress after 40. Join the Fortywell waitlist.",

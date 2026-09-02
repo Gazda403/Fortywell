@@ -1,90 +1,41 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { callAliExpressApi } from '@/lib/aliexpress/client';
-import { AliExpressProductRequest } from '@/types/aliexpress';
+import { NextResponse } from 'next/server';
+import { generateSignature } from '@/lib/aliexpress/signer';
 
-export async function GET(req: NextRequest) {
+export async function POST(req: Request) {
   try {
-    const searchParams = req.nextUrl.searchParams;
-    const productId = searchParams.get('productId') || searchParams.get('product_id');
+    const { productId, accessToken } = await req.json();
 
-    if (!productId) {
+    if (!productId || !accessToken) {
       return NextResponse.json(
-        { error: 'Missing required "productId" parameter.' },
+        { error: 'productId and accessToken are required' },
         { status: 400 }
       );
     }
 
-    const shipToCountry = searchParams.get('shipToCountry') || searchParams.get('country') || 'US';
-    const targetCurrency = searchParams.get('targetCurrency') || searchParams.get('currency') || 'USD';
-    const targetLanguage = searchParams.get('targetLanguage') || searchParams.get('language') || 'EN';
-    const session = searchParams.get('accessToken') || searchParams.get('session') || undefined;
+    const appKey = process.env.ALIEXPRESS_APP_KEY!;
+    const appSecret = process.env.ALIEXPRESS_APP_SECRET!;
+    const apiPath = '/aliexpress/ds/product/get';
+    const timestamp = Date.now().toString();
 
-    return await fetchProductDetails({
-      productId,
-      shipToCountry,
-      targetCurrency,
-      targetLanguage,
-      accessToken: session,
+    const params: Record<string, string> = {
+      app_key: appKey,
+      access_token: accessToken,
+      timestamp,
+      sign_method: 'sha256',
+      product_id: productId,
+    };
+
+    const sign = generateSignature(apiPath, params, appSecret);
+
+    const response = await fetch(`https://api-sg.aliexpress.com/sync${apiPath}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({ ...params, sign }),
     });
-  } catch (err: any) {
-    console.error('Error in GET /api/aliexpress/product:', err);
-    return NextResponse.json(
-      { error: err.message || 'Internal Server Error' },
-      { status: 500 }
-    );
+
+    const data = await response.json();
+    return NextResponse.json(data);
+  } catch (error) {
+    return NextResponse.json({ error: 'Failed to fetch product', details: error }, { status: 500 });
   }
-}
-
-export async function POST(req: NextRequest) {
-  try {
-    const body: AliExpressProductRequest = await req.json().catch(() => ({}));
-    const { productId, shipToCountry = 'US', targetCurrency = 'USD', targetLanguage = 'EN', accessToken } = body;
-
-    if (!productId) {
-      return NextResponse.json(
-        { error: 'Missing required "productId" in request body.' },
-        { status: 400 }
-      );
-    }
-
-    return await fetchProductDetails({
-      productId,
-      shipToCountry,
-      targetCurrency,
-      targetLanguage,
-      accessToken,
-    });
-  } catch (err: any) {
-    console.error('Error in POST /api/aliexpress/product:', err);
-    return NextResponse.json(
-      { error: err.message || 'Internal Server Error' },
-      { status: 500 }
-    );
-  }
-}
-
-async function fetchProductDetails(params: AliExpressProductRequest) {
-  const apiParams: Record<string, any> = {
-    product_id: params.productId,
-    ship_to_country: params.shipToCountry || 'US',
-    target_currency: params.targetCurrency || 'USD',
-    target_language: params.targetLanguage || 'EN',
-  };
-
-  const response = await callAliExpressApi({
-    method: 'aliexpress.ds.product.get',
-    params: apiParams,
-    session: params.accessToken,
-    signMethod: 'sha256',
-  });
-
-  const productData =
-    response.aliexpress_ds_product_get_response?.result ||
-    response.aliexpress_ds_product_get_response ||
-    response;
-
-  return NextResponse.json({
-    success: true,
-    data: productData,
-  });
 }

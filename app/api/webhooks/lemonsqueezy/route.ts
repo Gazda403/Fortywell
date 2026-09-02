@@ -1,24 +1,31 @@
 import { NextRequest, NextResponse } from 'next/server';
 import crypto from 'crypto';
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://yadjzsjfmamckptqotap.supabase.co';
-const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
-const WEBHOOK_SECRET = process.env.LEMON_SQUEEZY_WEBHOOK_SECRET || '';
+export const dynamic = 'force-dynamic';
 
-// Initialize Supabase Admin client
-const supabaseAdmin = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
-  auth: { persistSession: false },
-});
+function getSupabaseAdmin(): SupabaseClient | null {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://yadjzsjfmamckptqotap.supabase.co';
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (!supabaseUrl || !supabaseKey) {
+    return null;
+  }
+
+  return createClient(supabaseUrl, supabaseKey, {
+    auth: { persistSession: false },
+  });
+}
 
 export async function POST(req: NextRequest) {
   try {
     const rawBody = await req.text();
     const signature = req.headers.get('x-signature') || '';
+    const webhookSecret = process.env.LEMON_SQUEEZY_WEBHOOK_SECRET || '';
 
     // Verify HMAC SHA-256 Signature if secret is configured
-    if (WEBHOOK_SECRET) {
-      const hmac = crypto.createHmac('sha256', WEBHOOK_SECRET);
+    if (webhookSecret) {
+      const hmac = crypto.createHmac('sha256', webhookSecret);
       const digest = Buffer.from(hmac.update(rawBody).digest('hex'), 'utf8');
       const signatureBuffer = Buffer.from(signature, 'utf8');
 
@@ -72,6 +79,12 @@ export async function POST(req: NextRequest) {
       lemon_squeezy_subscription_id: subscriptionId,
       updated_at: new Date().toISOString(),
     };
+
+    const supabaseAdmin = getSupabaseAdmin();
+    if (!supabaseAdmin) {
+      console.warn('[LemonSqueezy Webhook] Supabase credentials not configured');
+      return NextResponse.json({ error: 'Database service not configured' }, { status: 503 });
+    }
 
     // Find profile by user_id first, or by email in auth.users
     let targetUserId = userId;

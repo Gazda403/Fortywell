@@ -9,6 +9,7 @@ const PinnedMoment = dynamic(() => import('@/components/PinnedMoment'), { ssr: t
 const ExpertAdvisory = dynamic(() => import('@/components/ExpertAdvisory'), { ssr: true });
 const HorizontalScrollGallery = dynamic(() => import('@/components/HorizontalScrollGallery'), { ssr: true });
 const CortisolAssessmentQuiz = dynamic(() => import('@/components/CortisolAssessmentQuiz'), { ssr: true });
+const FaqSection = dynamic(() => import('@/components/FaqSection'), { ssr: true });
 const LeadCaptureFooter = dynamic(() => import('@/components/LeadCaptureFooter'), { ssr: true });
 
 export default function Home() {
@@ -36,7 +37,10 @@ export default function Home() {
         {/* 6 ─ Interactive Diagnostic Assessment */}
         <CortisolAssessmentQuiz />
 
-        {/* 7 ─ Lead capture footer: Animated counters + email registration */}
+        {/* 7 ─ Frequently Asked Questions & Clinical Guidance (SEO & Rich Results) */}
+        <FaqSection />
+
+        {/* 8 ─ Lead capture footer: Animated counters + email registration */}
         <LeadCaptureFooter />
       </main>
     </SmoothScrollProvider>

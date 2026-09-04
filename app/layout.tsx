@@ -30,28 +30,41 @@ const instrumentSans = Instrument_Sans({
 
 // ─── Metadata ────────────────────────────────────────────────────────────────
 
+// ─── Metadata ────────────────────────────────────────────────────────────────
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://fortywell-app.vercel.app'),
-  title: "Fortywell — Cortisol-Conscious Wellness for Women Over 40",
+  title: "FortyWell — Cortisol-Conscious Fitness & Hormone Wellness for Women Over 40",
   description:
-    "A cortisol-conscious approach to lower-body fluid retention, heavy legs, and metabolic stress after 40. Join the Fortywell waitlist.",
+    "A science-backed, cortisol-conscious movement program for women over 40. Relieve lower-body fluid retention, heavy legs, and metabolic stress with joint-safe somatic strength and hormone rhythm adaptation.",
   keywords: [
-    // Core Niche
-    "wellness for women over 40", "cortisol management", "fluid retention", "heavy legs", "perimenopause fitness", "metabolic stress",
-    // Fitness & Movement
-    "fitness after 40", "workouts for perimenopause", "low intensity workouts for women", "cortisol-conscious workouts", "somatic movement", "nervous system regulation fitness", "holistic fitness for women", "slow fitness movement", "menopause exercise plan", "midlife fitness journey", "gentle workouts for high cortisol", "restorative movement",
-    // Hormones & Biology
-    "hormone balancing workouts", "estrogen decline symptoms", "perimenopause weight gain", "high cortisol symptoms in women", "cortisol belly", "metabolism after 40", "hormonal health for women", "endocrine system support", "midlife metabolic shift", "adrenal fatigue recovery", "stress hormone reduction",
-    // Fluid & Lymphatic
-    "water weight solutions", "swollen legs relief", "lymphatic drainage techniques", "lower body fluid retention", "reduce water retention naturally", "aldosterone and fluid retention", "lymphatic health", "swollen ankles perimenopause", "puffy legs remedy",
-    // General Wellness & Mindset
-    "holistic wellness over 40", "mindful movement", "women's midlife wellness", "sustainable fitness habits", "wellness retreat for women", "mind-body connection", "stress relief exercises", "wellness coaching for women over 40", "healthspan optimization", "longevity for women",
-    // Specific search queries
-    "why are my legs heavy after working out", "how to lower cortisol naturally", "best workouts for high cortisol", "perimenopause fluid retention", "fitness programs for women over 40", "healing from HIIT burnout", "overtraining symptoms in women"
+    // 1. Core Demographic & Brand
+    "FortyWell", "wellness for women over 40", "fitness after 40", "women over 40 workout plan", "midlife women fitness", "healthy aging for women", "longevity for women", "female healthspan optimization",
+    
+    // 2. Cortisol, Stress & Adrenal Health
+    "cortisol management for women", "cortisol belly reduction", "lower cortisol naturally", "adrenal fatigue workouts", "nervous system regulation exercises", "vagus nerve stimulation movement", "stress hormone balance", "overtraining syndrome perimenopause", "HIIT burnout recovery", "gentle movement for high cortisol",
+    
+    // 3. Fluid Retention, Heavy Legs & Lymphatics
+    "heavy legs after 40", "lower body fluid retention", "swollen ankles perimenopause", "puffy legs remedy", "lymphatic drainage exercises", "aldosterone fluid retention", "water weight relief perimenopause", "interstitial fluid clearance", "restorative legs up the wall inversions", "swollen feet perimenopause",
+    
+    // 4. Perimenopause & Menopause Physiology
+    "perimenopause workouts", "menopause fitness plan", "estrogen decline symptoms", "hormone balancing workouts", "perimenopause weight gain solutions", "post-menopause strength training", "endocrine support movement", "hot flashes exercise relief", "menopause sleep quality workouts",
+    
+    // 5. Joint Longevity, Bones & Pelvic Floor
+    "joint safe workouts for women", "knee safe exercises", "pelvic floor strengthening after 40", "diastasis recti safe core", "osteopenia exercise plan", "bone density strength training", "spine decompression routine", "morning joint stiffness relief", "low impact strength training",
+    
+    // 6. Somatic Movement & Low-Intensity Protocols
+    "somatic movement for women", "somatic exercises for stress release", "low intensity steady state cardio for women", "zone 2 cardio over 40", "15 minute gentle home workouts", "zero equipment joint mobility", "parasympathetic nervous system workouts", "slow fitness movement",
+    
+    // 7. Cycle Syncing & Phase Adaptation
+    "cycle syncing after 40", "perimenopause cycle syncing", "follicular phase strength training", "luteal phase restorative movement", "ovulatory phase workout pacing", "menstrual cycle fitness adaptation",
+    
+    // 8. Long-Tail Search Queries (Direct User Intent)
+    "why are my legs heavy and swollen after working out", "how to lower cortisol to lose belly fat women", "best workout routine for perimenopause exhaustion", "how to exercise with joint pain after 40", "gentle workouts for hormonal imbalance", "home workout plan for women over 40"
   ],
-  authors: [{ name: "Fortywell" }],
-  creator: "Fortywell",
-  publisher: "Fortywell",
+  authors: [{ name: "FortyWell Editorial & Clinical Advisory" }],
+  creator: "FortyWell",
+  publisher: "FortyWell",
   formatDetection: {
     email: false,
     address: false,
@@ -61,11 +74,11 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: "Fortywell — Cortisol-Conscious Wellness for Women Over 40",
+    title: "FortyWell — Cortisol-Conscious Fitness & Hormone Wellness for Women Over 40",
     description:
-      "A cortisol-conscious approach to lower-body fluid retention, heavy legs, and metabolic stress after 40.",
-    url: '/',
-    siteName: 'Fortywell',
+      "A science-backed, cortisol-conscious movement program for women over 40. Relieve lower-body fluid retention, heavy legs, and metabolic stress.",
+    url: 'https://fortywell-app.vercel.app',
+    siteName: 'FortyWell',
     locale: 'en_US',
     type: "website",
     images: [
@@ -73,14 +86,14 @@ export const metadata: Metadata = {
         url: '/0709.png',
         width: 1200,
         height: 630,
-        alt: 'Fortywell Wellness',
+        alt: 'FortyWell - Cortisol-Conscious Wellness for Women Over 40',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Fortywell — Cortisol-Conscious Wellness for Women Over 40",
-    description: "A cortisol-conscious approach to lower-body fluid retention, heavy legs, and metabolic stress after 40.",
+    title: "FortyWell — Cortisol-Conscious Fitness & Hormone Wellness for Women Over 40",
+    description: "A science-backed, cortisol-conscious movement program for women over 40. Relieve lower-body fluid retention, heavy legs, and metabolic stress.",
     images: ['/0709.png'],
     creator: '@fortywell',
   },
@@ -105,9 +118,99 @@ export const metadata: Metadata = {
   },
   manifest: '/site.webmanifest',
   appleWebApp: {
-    title: 'Fortywell',
+    title: 'FortyWell',
     statusBarStyle: 'black-translucent',
   },
+};
+
+// ─── JSON-LD Structured Data Schema (@graph) ─────────────────────────────────
+
+const jsonLdSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://fortywell-app.vercel.app/#organization",
+      "name": "FortyWell",
+      "url": "https://fortywell-app.vercel.app",
+      "logo": "https://fortywell-app.vercel.app/logo.png",
+      "description": "Evidence-based, cortisol-conscious fitness, lymphatic fluid drainage, and hormone health protocols designed specifically for women over 40.",
+      "slogan": "Calibrate your movement to your hormonal rhythm",
+      "sameAs": [
+        "https://www.instagram.com/fortywell",
+        "https://twitter.com/fortywell"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://fortywell-app.vercel.app/#website",
+      "url": "https://fortywell-app.vercel.app",
+      "name": "FortyWell",
+      "publisher": { "@id": "https://fortywell-app.vercel.app/#organization" },
+      "inLanguage": "en-US",
+      "description": "Cortisol-conscious wellness, somatic strength, and lower-body fluid retention solutions for women 40+."
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://fortywell-app.vercel.app/#application",
+      "name": "FortyWell",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "iOS, Android, Web",
+      "description": "Personalized somatic workouts, hormone cycle tracking, and AI coaching for women navigating perimenopause and menopause.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "description": "Free 7-Day Trial & Quiz Assessment"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://fortywell-app.vercel.app/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why do women over 40 experience lower-body fluid retention and heavy legs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "After 40, fluctuating estrogen levels and elevated baseline cortisol disrupt aldosterone regulation—the hormone that balances fluid retention and sodium. When physical or emotional stress spikes, interstitial fluid accumulates in the calves, ankles, and thighs, creating a sensation of heavy, exhausted legs. FortyWell utilizes somatic inversions and rhythmic skeletal muscle pumps to accelerate lymphatic drainage and clear trapped fluid without triggering inflammatory stress."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a cortisol-conscious workout and how does it differ from traditional HIIT?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Traditional high-intensity interval training (HIIT) can trigger massive cortisol spikes in perimenopausal and menopausal women, leading to adrenal fatigue, stubborn belly fat retention, and joint inflammation. A cortisol-conscious workout prioritizes parasympathetic nervous system safety, tempo-controlled isometric holds, and restorative pacing. It builds lean muscle and bone density while keeping your body in an optimal fat-burning, low-inflammation metabolic state."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does FortyWell protect joints, knees, and pelvic floor health during perimenopause?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Declining estrogen reduces collagen synthesis and synovial joint lubrication, making standard jumping and heavy impact risky for knees, lower back, and pelvic floor integrity. FortyWell exercises are 100% low-impact, joint-calibrated protocols focusing on deep core bracing, glute ignition, and segmental spinal mobility to preserve joint longevity and prevent injury."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does hormonal stage and cycle tracking adapt my daily workouts?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Your physical capacity naturally shifts across follicular, ovulatory, and luteal phases. FortyWell dynamically adjusts exercise intensity, volume, and recovery recommendations based on your reported energy, sleep quality, and cycle phase. When estrogen peaks, we introduce strength stimulus; when progesterone rises or fatigue appears, we shift seamlessly to restorative wind-down protocols."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How quickly will I feel relief from sluggishness and lower-body puffiness?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most women report a noticeable reduction in evening leg heaviness and puffiness within the first 7 to 10 days of consistent 15-minute daily resets. Improved morning joint fluidity, deeper sleep quality, and calmer daytime energy typically consolidate over 3 to 4 weeks of cortisol-calibrated movement."
+          }
+        }
+      ]
+    }
+  ]
 };
 
 export default function RootLayout({
@@ -120,6 +223,12 @@ export default function RootLayout({
       lang="en"
       className={`${cormorant.variable} ${playfair.variable} ${instrumentSans.variable}`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchema) }}
+        />
+      </head>
       <body className="grain">
         {children}
         <Analytics />

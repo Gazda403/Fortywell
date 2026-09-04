@@ -83,10 +83,10 @@ export default function FaqSection() {
   return (
     <section
       id="faq"
-      className="w-full bg-[#FAF7F2] text-[#2A2320] border-t border-[#2A2320]/10 py-20 md:py-28"
+      className="w-full bg-[#FAF7F2] text-[#2A2320] border-t border-[#2A2320]/10 py-20 md:py-28 flex justify-center"
       aria-label="Frequently Asked Questions"
     >
-      <div className="editorial-container flex flex-col gap-14 max-w-4xl mx-auto w-full px-6 items-center">
+      <div className="editorial-container flex flex-col gap-14 max-w-4xl mx-auto w-full items-center">
         {/* Section Header */}
         <div className="flex flex-col gap-4 text-center items-center max-w-3xl mx-auto">
           <span className="text-[#C96374] text-xs tracking-[0.28em] uppercase font-sans font-semibold text-center">
@@ -101,7 +101,7 @@ export default function FaqSection() {
         </div>
 
         {/* FAQ Accordion List */}
-        <div className="flex flex-col divide-y divide-[#2A2320]/10 border-y border-[#2A2320]/10">
+        <div className="w-full flex flex-col divide-y divide-[#2A2320]/10 border-y border-[#2A2320]/10">
           {FAQ_ITEMS.map((item, idx) => {
             const isOpen = openIndex === idx;
             return (

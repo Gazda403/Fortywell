@@ -1,14 +1,10 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import dynamic from 'next/dynamic';
 import { useGSAP } from '@gsap/react';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-// Lazy load the waitlist modal since it is hidden on initial render
-const WaitlistModal = dynamic(() => import('@/components/WaitlistModal'), { ssr: false });
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,10 +14,13 @@ interface MagneticButtonProps {
   children: React.ReactNode;
   className?: string;
   onClick?: () => void;
+  href?: string;
+  target?: string;
+  rel?: string;
 }
 
-function MagneticButton({ children, className = '', onClick }: MagneticButtonProps) {
-  const btnRef = useRef<HTMLButtonElement>(null);
+function MagneticButton({ children, className = '', onClick, href, target, rel }: MagneticButtonProps) {
+  const btnRef = useRef<HTMLElement>(null);
   const innerRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
@@ -78,18 +77,14 @@ function MagneticButton({ children, className = '', onClick }: MagneticButtonPro
     };
   }, []);
 
-  return (
-    <button
-      ref={btnRef}
-      onClick={onClick}
-      data-hover="grow"
-      className={`btn-magnetic group relative inline-flex items-center justify-center gap-4 rounded-full overflow-hidden
-        bg-gradient-to-r from-[#92A975] via-[#a8c28a] to-[#92A975] bg-[length:200%_100%]
-        text-[#F5EFE6] tracking-[0.18em] uppercase text-[12px] font-[500] font-sans
-        shadow-[0_0_24px_rgba(146,169,117,0.35)] hover:shadow-[0_0_36px_rgba(146,169,117,0.55)]
-        transition-all duration-500 hover:bg-right cursor-none ${className}`}
-      style={{ padding: '20px 56px', willChange: 'transform', backgroundPosition: '0% 0%' }}
-    >
+  const commonClass = `btn-magnetic group relative inline-flex items-center justify-center gap-4 rounded-full overflow-hidden
+    bg-gradient-to-r from-[#92A975] via-[#a8c28a] to-[#92A975] bg-[length:200%_100%]
+    text-[#F5EFE6] tracking-[0.18em] uppercase text-[12px] font-[500] font-sans
+    shadow-[0_0_24px_rgba(146,169,117,0.35)] hover:shadow-[0_0_36px_rgba(146,169,117,0.55)]
+    transition-all duration-500 hover:bg-right cursor-none ${className}`;
+
+  const content = (
+    <>
       {/* Shimmer sweep */}
       <span
         className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"
@@ -102,6 +97,34 @@ function MagneticButton({ children, className = '', onClick }: MagneticButtonPro
       <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-1 text-[#F5EFE6]/70 group-hover:text-[#F5EFE6]">
         →
       </span>
+    </>
+  );
+
+  if (href) {
+    return (
+      <a
+        ref={btnRef as unknown as React.RefObject<HTMLAnchorElement>}
+        href={href}
+        target={target}
+        rel={rel}
+        data-hover="grow"
+        className={commonClass}
+        style={{ padding: '20px 56px', willChange: 'transform', backgroundPosition: '0% 0%' }}
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <button
+      ref={btnRef as unknown as React.RefObject<HTMLButtonElement>}
+      onClick={onClick}
+      data-hover="grow"
+      className={commonClass}
+      style={{ padding: '20px 56px', willChange: 'transform', backgroundPosition: '0% 0%' }}
+    >
+      {content}
     </button>
   );
 }
@@ -110,7 +133,6 @@ function MagneticButton({ children, className = '', onClick }: MagneticButtonPro
 
 export default function HeroSection() {
   const [videoEnded, setVideoEnded] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const titleWrapRef = useRef<HTMLDivElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
@@ -309,7 +331,7 @@ export default function HeroSection() {
 
           {/* CTA */}
           <div ref={ctaRef} className="opacity-0 pt-2">
-            <MagneticButton onClick={() => setModalOpen(true)}>Join the Waitlist</MagneticButton>
+            <MagneticButton href="https://fortywell-app.vercel.app/">Install FortyWell</MagneticButton>
           </div>
         </div>
 
@@ -327,9 +349,6 @@ export default function HeroSection() {
 
       {/* Structural vertical line */}
       <div className="absolute right-[15%] top-0 bottom-0 w-px bg-[#F5EFE6]/5 hidden lg:block pointer-events-none" />
-
-      {/* Waitlist Modal */}
-      <WaitlistModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </section>
   );
 }

@@ -86,16 +86,16 @@ export default function FaqSection() {
       className="w-full bg-[#FAF7F2] text-[#2A2320] border-t border-[#2A2320]/10 py-20 md:py-28"
       aria-label="Frequently Asked Questions"
     >
-      <div className="editorial-container flex flex-col gap-14 max-w-4xl mx-auto px-6">
+      <div className="editorial-container flex flex-col gap-14 max-w-4xl mx-auto w-full px-6 items-center">
         {/* Section Header */}
-        <div className="flex flex-col gap-4 text-center md:text-left">
-          <span className="text-[#C96374] text-xs tracking-[0.28em] uppercase font-sans font-semibold">
+        <div className="flex flex-col gap-4 text-center items-center max-w-3xl mx-auto">
+          <span className="text-[#C96374] text-xs tracking-[0.28em] uppercase font-sans font-semibold text-center">
             Questions & Clinical Guidance
           </span>
-          <h2 className="font-editorial text-3xl md:text-5xl font-light text-[#2A2320] leading-tight tracking-tight">
+          <h2 className="font-editorial text-3xl md:text-5xl font-light text-[#2A2320] leading-tight tracking-tight text-center">
             Understanding your body after 40
           </h2>
-          <p className="text-[#5A4F48] text-sm md:text-base font-sans font-light max-w-2xl leading-relaxed">
+          <p className="text-[#5A4F48] text-sm md:text-base font-sans font-light max-w-2xl text-center leading-relaxed">
             Evidence-informed answers on cortisol management, perimenopausal fluid kinetics, and joint-safe somatic strength.
           </p>
         </div>

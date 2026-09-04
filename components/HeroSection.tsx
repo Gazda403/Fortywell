@@ -203,7 +203,7 @@ export default function HeroSection() {
           muted
           autoPlay
           playsInline
-          preload="auto"
+          preload="metadata"
           onEnded={() => setVideoEnded(true)}
           className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ${
             videoEnded ? 'opacity-0 pointer-events-none' : 'opacity-100'

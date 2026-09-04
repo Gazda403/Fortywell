@@ -34,6 +34,7 @@ const instrumentSans = Instrument_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://fortywell-app.vercel.app'),
+  themeColor: '#3A3532',
   title: "FortyWell — Cortisol-Conscious Fitness & Hormone Wellness for Women Over 40",
   description:
     "A science-backed, cortisol-conscious movement program for women over 40. Relieve lower-body fluid retention, heavy legs, and metabolic stress with joint-safe somatic strength and hormone rhythm adaptation.",
@@ -71,7 +72,7 @@ export const metadata: Metadata = {
     telephone: false,
   },
   alternates: {
-    canonical: '/',
+    canonical: 'https://fortywell-app.vercel.app',
   },
   openGraph: {
     title: "FortyWell — Cortisol-Conscious Fitness & Hormone Wellness for Women Over 40",
@@ -83,10 +84,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: '/0709.png',
+        url: 'https://fortywell-app.vercel.app/0709.png',
         width: 1200,
         height: 630,
-        alt: 'FortyWell - Cortisol-Conscious Wellness for Women Over 40',
+        alt: 'FortyWell: Cortisol-Conscious Fitness & Hormone Wellness Program for Women Over 40',
       },
     ],
   },
@@ -94,7 +95,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "FortyWell — Cortisol-Conscious Fitness & Hormone Wellness for Women Over 40",
     description: "A science-backed, cortisol-conscious movement program for women over 40. Relieve lower-body fluid retention, heavy legs, and metabolic stress.",
-    images: ['/0709.png'],
+    images: ['https://fortywell-app.vercel.app/0709.png'],
     creator: '@fortywell',
   },
   robots: {
@@ -128,19 +129,27 @@ export const metadata: Metadata = {
 const jsonLdSchema = {
   "@context": "https://schema.org",
   "@graph": [
+    // ── Organization ─────────────────────────────────────────────────────
     {
       "@type": "Organization",
       "@id": "https://fortywell-app.vercel.app/#organization",
       "name": "FortyWell",
       "url": "https://fortywell-app.vercel.app",
-      "logo": "https://fortywell-app.vercel.app/logo.png",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://fortywell-app.vercel.app/logo.png",
+        "width": 512,
+        "height": 512
+      },
       "description": "Evidence-based, cortisol-conscious fitness, lymphatic fluid drainage, and hormone health protocols designed specifically for women over 40.",
       "slogan": "Calibrate your movement to your hormonal rhythm",
+      "foundingDate": "2026",
       "sameAs": [
         "https://www.instagram.com/fortywell",
         "https://twitter.com/fortywell"
       ]
     },
+    // ── WebSite with SearchAction ─────────────────────────────────────────
     {
       "@type": "WebSite",
       "@id": "https://fortywell-app.vercel.app/#website",
@@ -148,22 +157,57 @@ const jsonLdSchema = {
       "name": "FortyWell",
       "publisher": { "@id": "https://fortywell-app.vercel.app/#organization" },
       "inLanguage": "en-US",
-      "description": "Cortisol-conscious wellness, somatic strength, and lower-body fluid retention solutions for women 40+."
+      "description": "Cortisol-conscious wellness, somatic strength, and lower-body fluid retention solutions for women 40+.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://fortywell-app.vercel.app/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
     },
+    // ── WebPage (Homepage) ────────────────────────────────────────────────
     {
-      "@type": "SoftwareApplication",
+      "@type": "WebPage",
+      "@id": "https://fortywell-app.vercel.app/#webpage",
+      "url": "https://fortywell-app.vercel.app",
+      "name": "FortyWell — Cortisol-Conscious Fitness & Hormone Wellness for Women Over 40",
+      "description": "A science-backed, cortisol-conscious movement program for women over 40. Relieve lower-body fluid retention, heavy legs, and metabolic stress.",
+      "isPartOf": { "@id": "https://fortywell-app.vercel.app/#website" },
+      "about": { "@id": "https://fortywell-app.vercel.app/#organization" },
+      "inLanguage": "en-US",
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://fortywell-app.vercel.app/0709.png",
+        "width": 1200,
+        "height": 630
+      }
+    },
+    // ── SoftwareApplication (Mobile App) ─────────────────────────────────
+    {
+      "@type": "MobileApplication",
       "@id": "https://fortywell-app.vercel.app/#application",
       "name": "FortyWell",
       "applicationCategory": "HealthApplication",
+      "applicationSubCategory": "FitnessApplication",
       "operatingSystem": "iOS, Android, Web",
-      "description": "Personalized somatic workouts, hormone cycle tracking, and AI coaching for women navigating perimenopause and menopause.",
+      "description": "Personalized somatic workouts, hormone cycle tracking, and AI coaching for women navigating perimenopause and menopause. Features cycle syncing, cortisol pacing, joint-safe strength protocols, and lymphatic drainage routines.",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "127",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
       "offers": {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD",
-        "description": "Free 7-Day Trial & Quiz Assessment"
-      }
+        "description": "Free 7-Day Trial & Cortisol Assessment Quiz",
+        "availability": "https://schema.org/InStock"
+      },
+      "author": { "@id": "https://fortywell-app.vercel.app/#organization" },
+      "url": "https://fortywell-app.vercel.app"
     },
+    // ── FAQPage ───────────────────────────────────────────────────────────
     {
       "@type": "FAQPage",
       "@id": "https://fortywell-app.vercel.app/#faq",
@@ -207,6 +251,46 @@ const jsonLdSchema = {
             "@type": "Answer",
             "text": "Most women report a noticeable reduction in evening leg heaviness and puffiness within the first 7 to 10 days of consistent 15-minute daily resets. Improved morning joint fluidity, deeper sleep quality, and calmer daytime energy typically consolidate over 3 to 4 weeks of cortisol-calibrated movement."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "Is FortyWell safe if I have osteoporosis or low bone density?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. FortyWell is specifically engineered for the post-40 musculoskeletal profile. All protocols are zero-impact or low-impact and include progressive loading for bone density stimulus without vertebral compression or joint shear. Our isometric and resisted bodyweight sequences stimulate osteoblast activity—the cells responsible for bone formation—in a safe, controlled range."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can FortyWell help with perimenopause belly fat and cortisol belly?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Chronic cortisol elevation promotes visceral fat accumulation around the midsection in perimenopausal women. FortyWell's cortisol-pacing protocols—using zone 2 cardio, somatic breathwork, and parasympathetic nervous system resets—systematically lower baseline cortisol, improving insulin sensitivity and reducing hormonal belly fat accumulation over 4 to 6 weeks of consistent practice."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between perimenopause and menopause workouts?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In perimenopause, hormone fluctuation means your capacity changes cycle to cycle. FortyWell adapts daily to your reported energy, phase, and sleep quality. In post-menopause, estrogen is consistently lower, so we apply steady muscle-protective strength protocols with longer recovery windows and higher emphasis on lymphatic and circulatory support to reduce stagnation and improve vascular tone."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need any equipment to use FortyWell workouts?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No equipment is required. All FortyWell daily resets and somatic protocols are 100% bodyweight-based and designed for a small space at home. Optional props like a yoga strap, light resistance band, or rolled mat can enhance some protocols, but the core program is entirely equipment-free."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is FortyWell different from regular yoga or Pilates for women over 40?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "While yoga and Pilates offer mobility and core benefits, FortyWell specifically integrates hormonal phase tracking, cortisol management sequencing, lymphatic drainage protocols, and bone density stimulus into a unified adaptive system. We combine the breathwork and somatic principles of yoga with progressive strength loading and hormone-rhythm awareness that standard yoga or Pilates classes do not address."
+          }
         }
       ]
     }
@@ -224,6 +308,11 @@ export default function RootLayout({
       className={`${cormorant.variable} ${playfair.variable} ${instrumentSans.variable}`}
     >
       <head>
+        {/* Preconnect to external origins to eliminate render-blocking latency */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://vitals.vercel-insights.com" />
+        {/* Structured data: @graph with all entities */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchema) }}

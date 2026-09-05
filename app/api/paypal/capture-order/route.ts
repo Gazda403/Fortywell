@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { sendPurchaseAlert } from '@/lib/notifications';
 
 function getCorsHeaders() {
   return {
@@ -22,7 +23,7 @@ function getPayPalBaseUrl() {
 export async function POST(req: Request) {
   try {
     const body = await req.json().catch(() => ({}));
-    const { orderID } = body;
+    const { orderID, productName, productId } = body;
 
     if (!orderID) {
       return NextResponse.json(
@@ -88,6 +89,52 @@ export async function POST(req: Request) {
         { error: 'Failed to capture PayPal order', details: captureData },
         { status: captureRes.status, headers: getCorsHeaders() }
       );
+    }
+
+    // 3. Send Resend Email Notification (non-blocking)
+    try {
+      const unit = captureData.purchase_units?.[0];
+      const captureItem = unit?.payments?.captures?.[0];
+      const payer = captureData.payer;
+      const paymentSource = captureData.payment_source;
+
+      const payerName =
+        payer?.name?.given_name || payer?.name?.surname
+          ? `${payer?.name?.given_name || ''} ${payer?.name?.surname || ''}`.trim()
+          : paymentSource?.card?.name || unit?.shipping?.name?.full_name || undefined;
+
+      const payerEmail = payer?.email_address || paymentSource?.paypal?.email_address || undefined;
+      const amountValue = captureItem?.amount?.value || unit?.amount?.value || '0.00';
+      const currencyCode = captureItem?.amount?.currency_code || unit?.amount?.currency_code || 'USD';
+      const paymentType = paymentSource?.card ? 'Credit / Debit Card' : 'PayPal';
+
+      const shipping = unit?.shipping;
+      const shippingAddress = shipping?.address
+        ? {
+            recipientName: shipping.name?.full_name || payerName,
+            line1: shipping.address.address_line_1,
+            line2: shipping.address.address_line_2,
+            city: shipping.address.admin_area_2,
+            state: shipping.address.admin_area_1,
+            postalCode: shipping.address.postal_code,
+            country: shipping.address.country_code,
+          }
+        : undefined;
+
+      sendPurchaseAlert({
+        orderId: String(captureData.id || orderID),
+        amount: amountValue,
+        currency: currencyCode,
+        productName: productName || unit?.description || 'FortyWell Store Item',
+        productId: productId || undefined,
+        customerEmail: payerEmail,
+        customerName: payerName,
+        provider: paymentType,
+        shippingAddress,
+        details: captureData,
+      }).catch((err) => console.error('[PayPal Capture] Resend notification error:', err));
+    } catch (notifErr) {
+      console.error('[PayPal Capture] Failed to parse notification payload:', notifErr);
     }
 
     return NextResponse.json(captureData, { headers: getCorsHeaders() });

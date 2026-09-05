@@ -75,6 +75,11 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
 
       if (res.ok) {
         setStatus('success');
+        if (typeof window !== 'undefined' && typeof (window as any).fbq === 'function') {
+          (window as any).fbq('track', 'Lead', {
+            content_name: 'FortyWell Waitlist',
+          });
+        }
       } else {
         setStatus('error');
       }

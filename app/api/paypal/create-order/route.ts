@@ -22,7 +22,12 @@ function getPayPalBaseUrl() {
 export async function POST(req: Request) {
   try {
     const body = await req.json().catch(() => ({}));
-    const { amount = '24.99', productName = 'Heritage Muscle Oil', productId = 'heritage-oil' } = body;
+    const {
+      amount = '24.99',
+      productName = 'Heritage Muscle Oil',
+      productId = 'heritage-oil',
+      aliExpressProductId,
+    } = body;
 
     const clientId = process.env.PAYPAL_CLIENT_ID || process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID;
     const clientSecret = process.env.PAYPAL_CLIENT_SECRET;
@@ -39,6 +44,17 @@ export async function POST(req: Request) {
 
     const baseUrl = getPayPalBaseUrl();
     const auth = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
+
+    // Build the return URL — includes productId and aliExpressProductId so the
+    // return handler knows what to fulfill after payment is approved
+    const appBaseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://fortywell.vercel.app';
+    const returnParams = new URLSearchParams({
+      productId,
+      productName,
+      ...(aliExpressProductId ? { aliExpressProductId } : {}),
+    });
+    const returnUrl = `${appBaseUrl}/api/paypal/return?${returnParams.toString()}`;
+    const cancelUrl = `${appBaseUrl}/order-cancelled`;
 
     // 1. Get OAuth Access Token from PayPal
     const tokenRes = await fetch(`${baseUrl}/v1/oauth2/token`, {
@@ -91,6 +107,8 @@ export async function POST(req: Request) {
               user_action: 'PAY_NOW',
               shipping_preference: 'GET_FROM_FILE',
               brand_name: 'FortyWell Apothecary',
+              return_url: returnUrl,
+              cancel_url: cancelUrl,
             },
           },
         },

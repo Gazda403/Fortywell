@@ -2,7 +2,11 @@ import { Resend } from 'resend';
 import { NextRequest, NextResponse } from 'next/server';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const TO_EMAIL = process.env.COACHING_NOTIFICATION_EMAIL || 'fortywell.team@gmail.com';
+const TO_EMAIL =
+  process.env.ADMIN_NOTIFICATION_EMAIL ||
+  process.env.NOTIFICATION_EMAIL ||
+  process.env.COACHING_NOTIFICATION_EMAIL ||
+  'fortywell.team@gmail.com';
 
 // CORS headers to allow requests from the mobile app (Expo / Web)
 const corsHeaders = {

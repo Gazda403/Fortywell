@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useGSAP } from '@gsap/react';
 import Image from 'next/image';
+import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -133,6 +134,7 @@ function MagneticButton({ children, className = '', onClick, href, target, rel }
 
 export default function HeroSection() {
   const [videoEnded, setVideoEnded] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const titleWrapRef = useRef<HTMLDivElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
@@ -236,7 +238,7 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#3A3532]/70 via-[#3A3532]/40 to-[#3A3532]/85 pointer-events-none" />
       </div>
 
-      {/* Curtain overlay (animates away on load) */}
+      {/* Wipe overlay — slides off on mount */}
       <div
         ref={overlayRef}
         className="absolute inset-0 bg-[#3A3532] z-20 origin-top"
@@ -246,7 +248,7 @@ export default function HeroSection() {
       {/* Content */}
       <div className="relative z-10 h-full flex flex-col justify-between editorial-container pt-8 pb-12 md:pb-16">
         {/* Nav row */}
-        <header className="flex items-center justify-between w-full">
+        <header className="relative flex items-center justify-between w-full">
           <div className="flex items-center gap-3">
             <Image
               src="/logo.png"
@@ -260,33 +262,110 @@ export default function HeroSection() {
               Fortywell
             </span>
           </div>
-          <nav className="hidden md:flex items-center gap-8">
-            {['The Method', 'Science', 'Ritual'].map((item) => (
-              <a
-                key={item}
-                href="#"
-                data-hover="grow"
-                className="text-[#F5EFE6]/60 text-xs tracking-[0.15em] uppercase font-sans hover:text-[#F5EFE6] transition-colors duration-300"
-              >
-                {item}
-              </a>
-            ))}
+
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center gap-7">
+            <a
+              href="#pillars"
+              data-hover="grow"
+              className="text-[#F5EFE6]/60 text-xs tracking-[0.15em] uppercase font-sans hover:text-[#F5EFE6] transition-colors duration-300"
+            >
+              The Method
+            </a>
+            <a
+              href="#science"
+              data-hover="grow"
+              className="text-[#F5EFE6]/60 text-xs tracking-[0.15em] uppercase font-sans hover:text-[#F5EFE6] transition-colors duration-300"
+            >
+              Science
+            </a>
+            <a
+              href="#ritual"
+              data-hover="grow"
+              className="text-[#F5EFE6]/60 text-xs tracking-[0.15em] uppercase font-sans hover:text-[#F5EFE6] transition-colors duration-300"
+            >
+              Ritual
+            </a>
+            <a
+              href="#free-guides"
+              data-hover="grow"
+              className="text-[#F5EFE6]/60 text-xs tracking-[0.15em] uppercase font-sans hover:text-[#F5EFE6] transition-colors duration-300"
+            >
+              Guides
+            </a>
+            <Link
+              href="/blog"
+              data-hover="grow"
+              className="text-[#92A975] text-xs tracking-[0.15em] uppercase font-sans font-semibold hover:text-[#F5EFE6] transition-colors duration-300 flex items-center gap-1.5"
+            >
+              <span>Blog</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#92A975]" />
+            </Link>
           </nav>
+
           {/* Mobile Nav Trigger */}
           <button 
-            className="md:hidden text-[#F5EFE6]/90 flex items-center gap-2"
+            type="button"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden text-[#F5EFE6]/90 flex items-center gap-2 cursor-pointer p-1"
             data-hover="grow"
-            aria-label="Menu"
+            aria-label="Toggle Menu"
+            aria-expanded={isMobileMenuOpen}
           >
-            <span className="text-xs tracking-widest uppercase font-sans">Menu</span>
+            <span className="text-xs tracking-widest uppercase font-sans">
+              {isMobileMenuOpen ? 'Close' : 'Menu'}
+            </span>
             <div className="w-4 h-3 flex flex-col justify-between">
               <span className="w-full h-px bg-current"></span>
               <span className="w-full h-px bg-current"></span>
             </div>
           </button>
-          <span className="text-[#92A975] text-xs tracking-[0.2em] uppercase font-sans">
+
+          <span className="text-[#92A975] text-xs tracking-[0.2em] uppercase font-sans hidden md:block">
             Est. 2026
           </span>
+
+          {/* Mobile Dropdown Menu */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden absolute top-14 left-0 right-0 z-50 bg-[#262220]/95 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl flex flex-col gap-4">
+              <a
+                href="#pillars"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-xs font-sans uppercase tracking-[0.15em] text-[#F5EFE6]/80 hover:text-[#92A975] py-2 border-b border-white/5"
+              >
+                The Method
+              </a>
+              <a
+                href="#science"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-xs font-sans uppercase tracking-[0.15em] text-[#F5EFE6]/80 hover:text-[#92A975] py-2 border-b border-white/5"
+              >
+                Science
+              </a>
+              <a
+                href="#ritual"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-xs font-sans uppercase tracking-[0.15em] text-[#F5EFE6]/80 hover:text-[#92A975] py-2 border-b border-white/5"
+              >
+                Ritual
+              </a>
+              <a
+                href="#free-guides"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-xs font-sans uppercase tracking-[0.15em] text-[#F5EFE6]/80 hover:text-[#92A975] py-2 border-b border-white/5"
+              >
+                Free Clinical Guides
+              </a>
+              <Link
+                href="/blog"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-xs font-sans uppercase tracking-[0.15em] text-[#92A975] font-semibold py-2 flex items-center justify-between"
+              >
+                <span>The Journal (Blog)</span>
+                <span>→</span>
+              </Link>
+            </div>
+          )}
         </header>
 
         {/* Main hero copy */}

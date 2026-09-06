@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Cormorant_Garamond, Playfair_Display, Instrument_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
@@ -29,13 +29,14 @@ const instrumentSans = Instrument_Sans({
   display: "swap",
 });
 
-// ─── Metadata ────────────────────────────────────────────────────────────────
+// ─── Viewport & Metadata ─────────────────────────────────────────────────────
 
-// ─── Metadata ────────────────────────────────────────────────────────────────
+export const viewport: Viewport = {
+  themeColor: '#3A3532',
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://fortywell-app.vercel.app'),
-  themeColor: '#3A3532',
   title: "FortyWell — Cortisol-Conscious Fitness & Hormone Wellness for Women Over 40",
   description:
     "A science-backed, cortisol-conscious movement program for women over 40. Relieve lower-body fluid retention, heavy legs, and metabolic stress with joint-safe somatic strength and hormone rhythm adaptation.",

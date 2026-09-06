@@ -196,7 +196,7 @@ export default function LeadMagnetSection() {
         style={{ background: 'radial-gradient(circle, rgba(201,99,116,0.15) 0%, transparent 70%)' }}
       />
 
-      <div className="editorial-container flex flex-col gap-16 max-w-6xl mx-auto w-full px-6 md:px-12 relative z-10">
+      <div className="flex flex-col gap-16 max-w-[1380px] mx-auto w-full px-4 sm:px-8 lg:px-12 relative z-10">
         {/* Section Header */}
         <div className="flex flex-col gap-4 text-center items-center max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/70 border border-[#2A2320]/10 shadow-xs">
@@ -223,12 +223,12 @@ export default function LeadMagnetSection() {
           )}
         </div>
 
-        {/* 3 Guide Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* 3 Guide Cards Grid (Larger cards with spacious breathing room) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 w-full">
           {GUIDES.map((guide, idx) => (
             <div
               key={guide.id}
-              className="group bg-white rounded-2xl p-7 md:p-8 flex flex-col justify-between border border-[#2A2320]/10 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 relative overflow-hidden"
+              className="group bg-white rounded-3xl p-8 sm:p-9 lg:p-10 flex flex-col justify-between border border-[#2A2320]/10 shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 relative overflow-hidden min-h-[460px] md:min-h-[490px]"
             >
               {/* Top accent bar */}
               <div
@@ -236,11 +236,11 @@ export default function LeadMagnetSection() {
                 style={{ backgroundColor: guide.badgeColor }}
               />
 
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-5">
                 {/* Header info */}
                 <div className="flex items-center justify-between gap-2 pt-1">
                   <span
-                    className="text-[10px] font-sans font-bold uppercase tracking-[0.18em] px-2.5 py-1 rounded-md"
+                    className="text-[10px] font-sans font-bold uppercase tracking-[0.18em] px-3 py-1 rounded-md"
                     style={{
                       backgroundColor: `${guide.badgeColor}15`,
                       color: guide.badgeColor,
@@ -258,7 +258,7 @@ export default function LeadMagnetSection() {
                   <h3 className="font-editorial text-2xl text-[#2A2320] group-hover:text-[#C96374] transition-colors leading-snug font-normal">
                     {guide.title}
                   </h3>
-                  <p className="text-xs font-sans text-[#7E726B] font-medium mt-1">
+                  <p className="text-xs font-sans text-[#7E726B] font-medium mt-1.5">
                     {guide.subtitle}
                   </p>
                 </div>
@@ -269,11 +269,11 @@ export default function LeadMagnetSection() {
                 </p>
 
                 {/* Highlight pills */}
-                <div className="flex flex-wrap gap-1.5 pt-2">
+                <div className="flex flex-wrap gap-2 pt-2">
                   {guide.highlights.map((tag) => (
                     <span
                       key={tag}
-                      className="text-[10.5px] font-sans font-normal text-[#5A4F48] bg-[#F4EFEA] px-2.5 py-0.5 rounded-md border border-[#2A2320]/5"
+                      className="text-[10.5px] font-sans font-normal text-[#5A4F48] bg-[#F4EFEA] px-3 py-1 rounded-lg border border-[#2A2320]/5"
                     >
                       {tag}
                     </span>
@@ -282,7 +282,7 @@ export default function LeadMagnetSection() {
               </div>
 
               {/* Action Footer */}
-              <div className="pt-8 mt-6 border-t border-[#2A2320]/8 flex items-center justify-between">
+              <div className="pt-6 mt-8 border-t border-[#2A2320]/8 flex items-center justify-between">
                 <div className="flex items-center gap-1.5 text-xs text-[#7E726B] font-sans">
                   <FileText size={14} className="text-[#7E726B]" />
                   <span>{guide.pages}</span>
@@ -291,7 +291,7 @@ export default function LeadMagnetSection() {
                 <button
                   type="button"
                   onClick={() => handleOpenModal(guide)}
-                  className="inline-flex items-center gap-2 text-xs font-sans uppercase tracking-[0.14em] font-semibold text-[#2A2320] group-hover:text-[#C96374] transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-2 text-xs font-sans uppercase tracking-[0.14em] font-semibold text-[#2A2320] group-hover:text-[#C96374] bg-[#FAF7F2] group-hover:bg-[#FAF0F2] px-4 py-2 rounded-full border border-[#2A2320]/8 transition-all cursor-pointer"
                   aria-label={`Download ${guide.title}`}
                 >
                   <span>{unlocked ? 'Download' : 'Get Free PDF'}</span>

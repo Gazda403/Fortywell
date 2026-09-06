@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>The Over-40 Daily Rhythm — FortyWell</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background: #FAF7F2;
+      color: #262220;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+    .page {
+      width: 210mm;
+      height: 297mm;
+      max-height: 297mm;
+      padding: 24mm 22mm 20mm 22mm;
+      position: relative;
+      page-break-after: always;
+      overflow: hidden;
+      background: #FAF7F2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .page:last-child {
+      page-break-after: avoid;
+    }
+    
+    .doc-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(38, 34, 32, 0.12);
+      margin-bottom: 24px;
+    }
+    .doc-header .brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      letter-spacing: 0.18em;
+      font-weight: 600;
+      color: #262220;
+      text-transform: uppercase;
+    }
+    .doc-header .badge {
+      font-size: 9.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #C96374;
+    }
+
+    .doc-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
+      border-top: 1px solid rgba(38, 34, 32, 0.12);
+      font-size: 10px;
+      color: #7E726B;
+    }
+    .doc-footer .disclaimer {
+      font-style: italic;
+      color: #8C8079;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      line-height: 1.1;
+      font-weight: 400;
+      margin: 0 0 12px 0;
+      color: #262220;
+      letter-spacing: -0.01em;
+    }
+    .serif-lead {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      line-height: 1.35;
+      font-weight: 400;
+      color: #554A44;
+      margin-bottom: 20px;
+    }
+    
+    .category-tag {
+      display: inline-block;
+      font-size: 9px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #92A975;
+      margin-bottom: 8px;
+    }
+
+    .habit-card {
+      background: #FFFFFF;
+      border: 1px solid rgba(38, 34, 32, 0.08);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
+    }
+    .habit-card .habit-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #C96374;
+      margin-bottom: 4px;
+    }
+    .habit-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 21px;
+      font-weight: 600;
+      color: #262220;
+      margin: 0 0 6px 0;
+    }
+    .habit-card p {
+      margin: 0;
+      color: #554A44;
+      font-size: 12.8px;
+      line-height: 1.5;
+    }
+    .habit-card .time-pill {
+      display: inline-block;
+      font-size: 10px;
+      background: rgba(146, 169, 117, 0.15);
+      color: #556B3E;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-top: 6px;
+    }
+
+    /* Tracker table */
+    .tracker-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      background: #FFFFFF;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(38, 34, 32, 0.1);
+    }
+    .tracker-table th, .tracker-table td {
+      padding: 10px 12px;
+      text-align: center;
+      border: 1px solid rgba(38, 34, 32, 0.08);
+      font-size: 12px;
+    }
+    .tracker-table th {
+      background: #F3EFE9;
+      font-weight: 600;
+      color: #262220;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .tracker-table td:first-child {
+      text-align: left;
+      font-weight: 500;
+      color: #4A403A;
+      width: 40%;
+    }
+    .checkbox-box {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 1.5px solid rgba(38, 34, 32, 0.3);
+      border-radius: 4px;
+      background: #FAF7F2;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── PAGE 1: HABITS 1 & 2 ── -->
+  <div class="page">
+    <div>
+      <div class="doc-header">
+        <span class="brand">FortyWell</span>
+        <span class="badge">Lifestyle Guide · Issue No. 03</span>
+      </div>
+
+      <span class="category-tag">Low-Effort, High-Impact Rituals</span>
+      <h1>The Over-40 Daily Rhythm: 3 Simple Micro-Habits</h1>
+      <p class="serif-lead">
+        Zero gym memberships, zero extra gear. Three subtle daily shifts that take under 10 minutes total and leave you feeling light, calm, and grounded.
+      </p>
+
+      <!-- Habit 1 -->
+      <div class="habit-card">
+        <span class="habit-badge">Micro-Habit 01 · 7:30 AM</span>
+        <h3>The 2-Minute Morning Hydration & Light Anchor</h3>
+        <p>
+          Before reaching for coffee or scrolling through emails, drink a tall glass of room-temperature water with a tiny pinch of unrefined sea salt or lemon. Immediately look out a window or step outside for 2 minutes. The mineralized water hydrates connective tissues and kicks off sluggish kidney clearance, while natural daylight synchronizes your suprachiasmatic nucleus (your circadian master clock), preventing premature afternoon cortisol crashes.
+        </p>
+        <span class="time-pill">Duration: 2 Minutes · Cost: Free</span>
+      </div>
+
+      <!-- Habit 2 -->
+      <div class="habit-card" style="margin-bottom: 0;">
+        <span class="habit-badge">Micro-Habit 02 · 2:30 PM</span>
+        <h3>The 3-Minute Spinal Wave & Ribcage Decompression</h3>
+        <p>
+          By mid-afternoon, prolonged sitting compresses the diaphragm, elevating shallow chest breathing and creating subconscious stress signals. Stand up, lace your fingers behind your back, open your collarbones, and take 5 slow deep breaths into the sides of your ribcage, letting your shoulders drop on each long exhale. This immediately halts the mid-afternoon adrenaline spike and restores cerebral oxygen.
+        </p>
+        <span class="time-pill">Duration: 3 Minutes · At Your Desk</span>
+      </div>
+    </div>
+
+    <div class="doc-footer">
+      <span>FortyWell · fortywell.com</span>
+      <span class="disclaimer">Complimentary Lifestyle Guidance</span>
+      <span>Page 1 of 2</span>
+    </div>
+  </div>
+
+  <!-- ── PAGE 2: HABIT 3 & PRINTABLE 7-DAY TRACKER ── -->
+  <div class="page">
+    <div>
+      <div class="doc-header">
+        <span class="brand">FortyWell</span>
+        <span class="badge">Lifestyle Guide · Issue No. 03</span>
+      </div>
+
+      <!-- Habit 3 -->
+      <div class="habit-card" style="margin-bottom: 20px;">
+        <span class="habit-badge">Micro-Habit 03 · 9:00 PM</span>
+        <h3>The 5-Minute Legs-Up Fluid Drain</h3>
+        <p>
+          Lie on your rug or bed with your legs elevated vertically against the wall or over the armrest of your sofa. Place your hands over your lower belly. As gravity naturally reverses the hydrostatic pressure in your leg veins, interstitial fluid drains toward your central lymphatic system, easing swollen ankles and relieving restless legs before sleep.
+        </p>
+        <span class="time-pill">Duration: 5 Minutes · Completely Restful</span>
+      </div>
+
+      <!-- Printable 7-Day Tracker -->
+      <div style="background: #F3EFE9; border-radius: 12px; padding: 18px 20px; margin-bottom: 16px;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 20px; margin: 0; color: #262220;">
+            Printable 7-Day Micro-Habit Tracker
+          </h3>
+          <span style="font-size: 10px; color: #7E726B; letter-spacing: 0.1em; text-transform: uppercase;">Week of: ____________</span>
+        </div>
+        <p style="margin: 0 0 10px 0; font-size: 11.5px; color: #554A44;">
+          Print this page and place it on your nightstand or refrigerator. Check off each micro-habit daily:
+        </p>
+
+        <table class="tracker-table">
+          <thead>
+            <tr>
+              <th>Habit / Daily Rhythm</th>
+              <th>M</th>
+              <th>T</th>
+              <th>W</th>
+              <th>T</th>
+              <th>F</th>
+              <th>S</th>
+              <th>S</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>☀️ Morning Light & Mineral Water</td>
+              <td><span class="checkbox-box"></span></td>
+              <td><span class="checkbox-box"></span></td>
+              <td><span class="checkbox-box"></span></td>
+              <td><span class="checkbox-box"></span></td>
+              <td><span class="checkbox-box"></span></td>
+              <td><span class="checkbox-box"></span></td>
+              <td><span class="checkbox-box"></span></td>
+            </tr>
+            <tr>
+              <td>🌬️ 2:30 PM Ribcage Decompression</td>
+              <td><span class="checkbox-box"></span></td>
+              <td><span class="checkbox-box"></span></td>
+              <td><span class="checkbox-box"></span></td>
+              <td><span class="checkbox-box"></span></td>
+              <td><span class="checkbox-box"></span></td>
+              <td><span class="checkbox-box"></span></td>
+              <td><span class="checkbox-box"></span></td>
+            </tr>
+            <tr>
+              <td>🌙 9:00 PM Legs-Up Fluid Drain</td>
+              <td><span class="checkbox-box"></span></td>
+              <td><span class="checkbox-box"></span></td>
+              <td><span class="checkbox-box"></span></td>
+              <td><span class="checkbox-box"></span></td>
+              <td><span class="checkbox-box"></span></td>
+              <td><span class="checkbox-box"></span></td>
+              <td><span class="checkbox-box"></span></td>
+            </tr>
+            <tr>
+              <td>✦ How Light Did Your Body Feel? (1–10)</td>
+              <td>__</td>
+              <td>__</td>
+              <td>__</td>
+              <td>__</td>
+              <td>__</td>
+              <td>__</td>
+              <td>__</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- App teaser -->
+      <div style="background: #262220; color: #F5EFE6; border-radius: 12px; padding: 16px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <h4 style="font-family: 'Cormorant Garamond', serif; font-size: 19px; margin: 0 0 3px 0; color: #FAF7F2;">
+              Ready for guided daily somatic sessions?
+            </h4>
+            <p style="margin: 0; font-size: 11.5px; color: rgba(245, 239, 230, 0.7);">
+              FortyWell pairs daily cortisol pacing with guided audio and video, calibrated specifically for women over 40.
+            </p>
+          </div>
+          <div style="text-align: right; flex-shrink: 0; margin-left: 16px;">
+            <span style="display: inline-block; background: #92A975; color: #262220; font-weight: 700; font-size: 10.5px; padding: 6px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.1em;">
+              fortywell.com
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="doc-footer">
+      <span>FortyWell · fortywell.com</span>
+      <span class="disclaimer">Complimentary Lifestyle Guidance · © FortyWell</span>
+      <span>Page 2 of 2</span>
+    </div>
+  </div>
+
+</body>
+</html>

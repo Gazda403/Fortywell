@@ -629,3 +629,195 @@ export async function sendSubscriptionAlert(params: SubscriptionAlertParams) {
     return { success: false, error: err.message };
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. LEAD MAGNET NOTIFICATIONS (FREE PDF GUIDES)
+// ─────────────────────────────────────────────────────────────────────────────
+
+export interface LeadMagnetParams {
+  email: string;
+  guideTitle?: string;
+  guideId?: string;
+}
+
+export async function sendLeadMagnetEmail(params: LeadMagnetParams) {
+  const resend = getResendClient();
+  if (!resend) {
+    console.warn('[Notifications] Skipping subscriber guide email — Resend not initialized');
+    return { success: false, error: 'Resend API key missing' };
+  }
+
+  const { email, guideTitle = "5 Signs Your Body's Changing After 40" } = params;
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://fortywell-app.vercel.app';
+
+  const html = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Your FortyWell Guides</title>
+    </head>
+    <body style="margin:0;padding:0;background:#181514;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+      <table width="100%" cellpadding="0" cellspacing="0" style="background:#181514;padding:40px 20px;">
+        <tr>
+          <td align="center">
+            <table width="580" cellpadding="0" cellspacing="0" style="background:#262220;border-radius:14px;overflow:hidden;border:1px solid rgba(245,239,230,0.1);box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+              
+              <!-- Header -->
+              <tr>
+                <td style="padding:36px 40px 28px;background:#201C1A;border-bottom:1px solid rgba(245,239,230,0.08);">
+                  <p style="margin:0 0 6px;color:#92A975;font-size:11px;letter-spacing:0.25em;text-transform:uppercase;font-weight:700;">
+                    FORTYWELL CLINICAL GUIDANCE
+                  </p>
+                  <h1 style="margin:0;color:#F5EFE6;font-size:24px;font-weight:600;letter-spacing:-0.02em;">
+                    Your Free Guides Are Ready
+                  </h1>
+                </td>
+              </tr>
+
+              <!-- Content Body -->
+              <tr>
+                <td style="padding:32px 40px;">
+                  <p style="margin:0 0 20px;color:rgba(245,239,230,0.85);font-size:15px;line-height:1.6;">
+                    Hello,<br/><br/>
+                    Thank you for requesting <strong>${guideTitle}</strong>. As promised, here are your instant downloads. You have access to all three of our clinical and lifestyle guides below:
+                  </p>
+
+                  <!-- Guide 1 Card -->
+                  <div style="background:#1C1917;border-radius:10px;padding:18px 20px;margin-bottom:16px;border:1px solid rgba(245,239,230,0.08);">
+                    <span style="display:inline-block;background:rgba(201,99,116,0.18);color:#E897A4;padding:3px 8px;border-radius:12px;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">
+                      Guide 01 · 3-Min Read
+                    </span>
+                    <h3 style="margin:0 0 6px;color:#F5EFE6;font-size:17px;font-weight:600;">
+                      5 Signs Your Body Is Changing After 40
+                    </h3>
+                    <p style="margin:0 0 14px;color:rgba(245,239,230,0.65);font-size:13px;line-height:1.45;">
+                      Why traditional workouts stop working, the 3 AM cortisol wake-up, and fluid pooling in your lower legs.
+                    </p>
+                    <a href="${baseUrl}/guides/5-signs-body-changing-after-40.pdf" target="_blank" style="display:inline-block;background:#92A975;color:#181514;padding:8px 18px;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;">
+                      Download Guide 01 (PDF) →
+                    </a>
+                  </div>
+
+                  <!-- Guide 2 Card -->
+                  <div style="background:#1C1917;border-radius:10px;padding:18px 20px;margin-bottom:16px;border:1px solid rgba(245,239,230,0.08);">
+                    <span style="display:inline-block;background:rgba(146,169,117,0.18);color:#A8BD8D;padding:3px 8px;border-radius:12px;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">
+                      Guide 02 · Clinical Q&amp;A
+                    </span>
+                    <h3 style="margin:0 0 6px;color:#F5EFE6;font-size:17px;font-weight:600;">
+                      Questions &amp; Clinical Guidance for Women After 40
+                    </h3>
+                    <p style="margin:0 0 14px;color:rgba(245,239,230,0.65);font-size:13px;line-height:1.45;">
+                      Straightforward medical answers: perimenopause vs stress, why cardio stops working, and the single highest-impact 10-minute habit.
+                    </p>
+                    <a href="${baseUrl}/guides/questions-and-clinical-guidance-after-40.pdf" target="_blank" style="display:inline-block;background:#92A975;color:#181514;padding:8px 18px;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;">
+                      Download Guide 02 (PDF) →
+                    </a>
+                  </div>
+
+                  <!-- Guide 3 Card -->
+                  <div style="background:#1C1917;border-radius:10px;padding:18px 20px;margin-bottom:24px;border:1px solid rgba(245,239,230,0.08);">
+                    <span style="display:inline-block;background:rgba(209,167,140,0.18);color:#D1A78C;padding:3px 8px;border-radius:12px;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">
+                      Guide 03 · Printable Checklist
+                    </span>
+                    <h3 style="margin:0 0 6px;color:#F5EFE6;font-size:17px;font-weight:600;">
+                      The Over-40 Daily Rhythm: 3 Simple Micro-Habits
+                    </h3>
+                    <p style="margin:0 0 14px;color:rgba(245,239,230,0.65);font-size:13px;line-height:1.45;">
+                      Low-effort shifts under 10 minutes total, plus a printable 7-day tracker for your fridge or nightstand.
+                    </p>
+                    <a href="${baseUrl}/guides/over-40-daily-rhythm-cortisol-reset.pdf" target="_blank" style="display:inline-block;background:#92A975;color:#181514;padding:8px 18px;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;">
+                      Download Guide 03 (PDF) →
+                    </a>
+                  </div>
+
+                  <!-- Closing Callout -->
+                  <p style="margin:0;color:rgba(245,239,230,0.6);font-size:13px;line-height:1.5;">
+                    Keep these files saved on your phone or computer. When you're ready for daily personalized, zero-equipment somatic sessions, visit us anytime at <a href="${baseUrl}" style="color:#92A975;text-decoration:none;">fortywell.com</a>.
+                  </p>
+                </td>
+              </tr>
+
+              <!-- Footer -->
+              <tr>
+                <td style="padding:18px 40px;background:#201C1A;border-top:1px solid rgba(245,239,230,0.08);">
+                  <p style="margin:0;color:rgba(245,239,230,0.3);font-size:11px;letter-spacing:0.05em;text-align:center;">
+                    FortyWell · Evidence-informed movement for women over 40
+                  </p>
+                </td>
+              </tr>
+
+            </table>
+          </td>
+        </tr>
+      </table>
+    </body>
+    </html>
+  `;
+
+  try {
+    const { data, error } = await resend.emails.send({
+      from: FROM_EMAIL,
+      to: [email],
+      subject: `✦ Your Free FortyWell Guides Are Ready (Instant Download)`,
+      html,
+    });
+
+    if (error) {
+      console.error('[Resend Lead Magnet Error]:', error);
+      return { success: false, error };
+    }
+
+    return { success: true, id: data?.id };
+  } catch (err: any) {
+    console.error('[Resend Lead Magnet Exception]:', err);
+    return { success: false, error: err.message };
+  }
+}
+
+export async function sendLeadMagnetAdminAlert(params: LeadMagnetParams) {
+  const resend = getResendClient();
+  if (!resend) return { success: false };
+
+  const { email, guideTitle = "5 Signs Your Body's Changing After 40" } = params;
+  const adminEmail = getAdminNotificationEmail();
+  const timestamp = getFormattedTimestamp();
+
+  const html = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head><meta charset="UTF-8" /><title>New Lead Magnet Download</title></head>
+    <body style="background:#181514;font-family:sans-serif;color:#F5EFE6;padding:30px 20px;">
+      <div style="max-width:500px;margin:0 auto;background:#262220;border-radius:12px;padding:28px 32px;border:1px solid rgba(245,239,230,0.1);">
+        <p style="color:#92A975;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;margin:0 0 6px;">
+          ✦ NEW LEAD MAGNET DOWNLOAD
+        </p>
+        <h2 style="margin:0 0 16px;color:#F5EFE6;font-size:20px;">
+          ${guideTitle}
+        </h2>
+        <p style="margin:0 0 8px;font-size:14px;color:rgba(245,239,230,0.7);">
+          Subscriber Email: <strong style="color:#92A975;">${email}</strong>
+        </p>
+        <p style="margin:0;font-size:12px;color:rgba(245,239,230,0.4);">
+          Captured at: ${timestamp} · Source: Lead Magnet Section
+        </p>
+      </div>
+    </body>
+    </html>
+  `;
+
+  try {
+    await resend.emails.send({
+      from: FROM_EMAIL,
+      to: [adminEmail],
+      replyTo: email,
+      subject: `✦ New FortyWell Lead: ${email} (${guideTitle})`,
+      html,
+    });
+    return { success: true };
+  } catch (err) {
+    console.error('[Resend Lead Magnet Admin Alert Exception]:', err);
+    return { success: false };
+  }
+}

@@ -10,6 +10,7 @@ const ExpertAdvisory = dynamic(() => import('@/components/ExpertAdvisory'), { ss
 const HorizontalScrollGallery = dynamic(() => import('@/components/HorizontalScrollGallery'), { ssr: true });
 const CortisolAssessmentQuiz = dynamic(() => import('@/components/CortisolAssessmentQuiz'), { ssr: true });
 const FaqSection = dynamic(() => import('@/components/FaqSection'), { ssr: true });
+const LeadMagnetSection = dynamic(() => import('@/components/LeadMagnetSection'), { ssr: true });
 const LeadCaptureFooter = dynamic(() => import('@/components/LeadCaptureFooter'), { ssr: true });
 
 export default function Home() {
@@ -40,7 +41,10 @@ export default function Home() {
         {/* 7 ─ Frequently Asked Questions & Clinical Guidance (SEO & Rich Results) */}
         <FaqSection />
 
-        {/* 8 ─ Lead capture footer: Animated counters + email registration */}
+        {/* 8 ─ Free Downloadable Clinical Guides (Lead Magnet Gate) */}
+        <LeadMagnetSection />
+
+        {/* 9 ─ Lead capture footer: Animated counters + email registration */}
         <LeadCaptureFooter />
       </main>
     </SmoothScrollProvider>

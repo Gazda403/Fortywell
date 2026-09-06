@@ -224,11 +224,11 @@ export default function LeadMagnetSection() {
         </div>
 
         {/* 3 Guide Cards Grid (Larger cards with spacious breathing room) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 w-full">
           {GUIDES.map((guide, idx) => (
             <div
               key={guide.id}
-              className="group bg-white rounded-3xl p-8 sm:p-9 lg:p-10 flex flex-col justify-between border border-[#2A2320]/10 shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 relative overflow-hidden min-h-[460px] md:min-h-[490px]"
+              className="group bg-white rounded-3xl p-6 sm:p-7 lg:p-8 flex flex-col justify-between border border-[#2A2320]/10 shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 relative overflow-hidden min-h-[520px] md:min-h-[560px]"
             >
               {/* Top accent bar */}
               <div

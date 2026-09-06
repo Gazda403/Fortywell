@@ -123,6 +123,9 @@ export const metadata: Metadata = {
     title: 'FortyWell',
     statusBarStyle: 'black-translucent',
   },
+  verification: {
+    google: 'WRYSzuwisnZSz8EG0lIXJRr7vct0bKbcHYiV1yzFjNA',
+  },
 };
 
 // ─── JSON-LD Structured Data Schema (@graph) ─────────────────────────────────

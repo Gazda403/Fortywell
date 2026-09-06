@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
 import { Cormorant_Garamond, Playfair_Display, Instrument_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
@@ -320,9 +319,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchema) }}
         />
         {/* Meta Pixel */}
-        <Script
-          id="meta-pixel"
-          strategy="afterInteractive"
+        <script
           dangerouslySetInnerHTML={{
             __html: `
               !function(f,b,e,v,n,t,s)

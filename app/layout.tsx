@@ -312,6 +312,8 @@ export default function RootLayout({
       className={`${cormorant.variable} ${playfair.variable} ${instrumentSans.variable}`}
     >
       <head>
+        {/* Google Site Verification (Google Merchant Center & Search Console) */}
+        <meta name="google-site-verification" content="WRYSzuwisnZSz8EG0lIXJRr7vct0bKbcHYiV1yzFjNA" />
         {/* Preconnect to external origins to eliminate render-blocking latency */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

@@ -91,12 +91,12 @@ export default async function BlogPostPage({ params }: Props) {
 
       <main className="flex-1 w-full max-w-4xl mx-auto px-6 md:px-12 py-10 md:py-16 flex flex-col gap-12">
         {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-xs font-sans text-[#7E726B]" aria-label="Breadcrumb">
-          <Link href="/" className="hover:text-[#2A2320] transition-colors">
+        <nav className="flex items-center justify-center gap-2 text-xs font-sans text-[#7E726B]" aria-label="Breadcrumb">
+          <Link href="/" className="hover:text-[#C96374] transition-colors">
             Home
           </Link>
           <ChevronRight size={13} className="text-[#2A2320]/30" />
-          <Link href="/blog" className="hover:text-[#2A2320] transition-colors">
+          <Link href="/blog" className="hover:text-[#C96374] transition-colors">
             Journal
           </Link>
           <ChevronRight size={13} className="text-[#2A2320]/30" />
@@ -105,10 +105,10 @@ export default async function BlogPostPage({ params }: Props) {
           </span>
         </nav>
 
-        {/* Article Header */}
-        <header className="flex flex-col gap-6 border-b border-[#2A2320]/10 pb-10">
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#92A975] bg-[#92A975]/15 px-3 py-1 rounded-full border border-[#92A975]/30">
+        {/* Article Header (Centered) */}
+        <header className="flex flex-col items-center text-center gap-6 border-b border-[#2A2320]/10 pb-10 max-w-3xl mx-auto w-full">
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#C96374] bg-[#C96374]/15 px-3.5 py-1 rounded-full border border-[#C96374]/30">
               {post.category}
             </span>
             <span className="text-xs text-[#7E726B] flex items-center gap-1.5">
@@ -119,17 +119,17 @@ export default async function BlogPostPage({ params }: Props) {
             <span className="text-xs text-[#7E726B]">{post.publishedAt}</span>
           </div>
 
-          <h1 className="font-editorial text-3xl md:text-5xl lg:text-6xl font-light text-[#2A2320] leading-[1.12] tracking-tight">
+          <h1 className="font-editorial text-3xl md:text-5xl lg:text-6xl font-light text-[#2A2320] leading-[1.12] tracking-tight text-center">
             {post.title}
           </h1>
 
-          <p className="font-editorial text-xl md:text-2xl text-[#554A44] font-light leading-snug">
+          <p className="font-editorial text-xl md:text-2xl text-[#554A44] font-light leading-snug text-center">
             {post.subtitle}
           </p>
 
           {/* Author & Clinical Review Bar */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-[#2A2320]/8 text-xs text-[#7E726B]">
-            <div className="flex flex-col">
+          <div className="flex flex-wrap items-center justify-center gap-6 pt-4 border-t border-[#2A2320]/8 text-xs text-[#7E726B] w-full">
+            <div className="flex flex-col items-center">
               <span className="text-xs font-semibold text-[#2A2320]">{post.author.name}</span>
               <span className="text-[11px] text-[#7E726B]">{post.author.role}</span>
             </div>
@@ -144,9 +144,9 @@ export default async function BlogPostPage({ params }: Props) {
         </header>
 
         {/* ── KEY TAKEAWAYS BOX ── */}
-        <div className="bg-[#F3EFE9] border-l-4 border-[#92A975] rounded-r-2xl p-6 md:p-8">
+        <div className="bg-[#FAF2F4] border-l-4 border-[#C96374] rounded-r-2xl p-6 md:p-8">
           <div className="flex items-center gap-2 mb-3">
-            <Sparkles size={16} className="text-[#556B3E]" />
+            <Sparkles size={16} className="text-[#C96374]" />
             <h3 className="font-editorial text-xl text-[#2A2320] font-medium">
               Executive Clinical Takeaways
             </h3>
@@ -175,20 +175,20 @@ export default async function BlogPostPage({ params }: Props) {
               ))}
 
               {section.callout && (
-                <div className="my-2 p-6 rounded-2xl bg-white border border-[#2A2320]/10 shadow-xs font-editorial text-xl md:text-2xl text-[#2A2320] font-light leading-snug italic text-center">
+                <div className="my-2 p-6 rounded-2xl bg-white border border-[#C96374]/20 shadow-xs font-editorial text-xl md:text-2xl text-[#2A2320] font-light leading-snug italic text-center">
                   "{section.callout}"
                 </div>
               )}
 
               {section.list && (
                 <div className="bg-white/80 border border-[#2A2320]/8 rounded-2xl p-6 my-2">
-                  <span className="text-[11px] uppercase tracking-[0.2em] font-bold text-[#556B3E] block mb-3">
+                  <span className="text-[11px] uppercase tracking-[0.2em] font-bold text-[#C96374] block mb-3">
                     Actionable Protocol Shifts:
                   </span>
                   <ul className="flex flex-col gap-2.5">
                     {section.list.map((li, lIdx) => (
                       <li key={lIdx} className="text-sm text-[#4A403A] flex items-start gap-2.5">
-                        <span className="text-[#92A975] font-bold">✦</span>
+                        <span className="text-[#C96374] font-bold">✦</span>
                         <span>{li}</span>
                       </li>
                     ))}
@@ -199,16 +199,16 @@ export default async function BlogPostPage({ params }: Props) {
           ))}
         </div>
 
-        {/* ── LEAD MAGNET CALLOUT CARD ── */}
-        <div className="bg-[#262220] text-[#F5EFE6] rounded-3xl p-8 md:p-10 border border-white/10 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 my-6">
+        {/* ── LEAD MAGNET CALLOUT CARD (PINK ROSE THEME) ── */}
+        <div className="bg-gradient-to-br from-[#C96374] via-[#BD5869] to-[#A34354] text-[#FFF9F6] rounded-3xl p-8 md:p-10 border border-[#C96374]/30 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 my-6 text-center md:text-left">
           <div className="flex flex-col gap-2 max-w-lg">
-            <span className="text-[10px] uppercase tracking-[0.22em] font-bold text-[#92A975]">
+            <span className="text-[10px] uppercase tracking-[0.22em] font-bold text-white/90 bg-white/20 px-3 py-0.5 rounded-full w-fit mx-auto md:mx-0">
               Free Downloadable Resource
             </span>
-            <h3 className="font-editorial text-2xl md:text-3xl font-light text-[#FAF7F2]">
+            <h3 className="font-editorial text-2xl md:text-3xl font-light text-white">
               {post.leadMagnetTitle}
             </h3>
-            <p className="text-xs md:text-sm text-[#F5EFE6]/70 leading-relaxed">
+            <p className="text-xs md:text-sm text-white/85 leading-relaxed">
               Download the accompanying PDF guide for offline reading, checklists, and clinical references.
             </p>
           </div>
@@ -217,7 +217,7 @@ export default async function BlogPostPage({ params }: Props) {
             href={post.leadMagnetUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#92A975] hover:bg-[#a8c28a] text-[#181514] font-sans text-xs uppercase tracking-[0.14em] font-semibold transition-all shadow-md"
+            className="flex-shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-[#9E3E4F] hover:bg-[#FFF2F4] font-sans text-xs uppercase tracking-[0.14em] font-bold transition-all shadow-md cursor-pointer hover:scale-[1.02]"
           >
             <Download size={14} />
             <span>Download Free PDF</span>
@@ -231,7 +231,7 @@ export default async function BlogPostPage({ params }: Props) {
 
         {/* ── RELATED ARTICLES ── */}
         <section className="flex flex-col gap-6 pt-10 border-t border-[#2A2320]/10">
-          <h3 className="font-editorial text-2xl md:text-3xl text-[#2A2320] font-light">
+          <h3 className="font-editorial text-2xl md:text-3xl text-[#2A2320] font-light text-center">
             Related Clinical Analyses
           </h3>
 
@@ -253,7 +253,7 @@ export default async function BlogPostPage({ params }: Props) {
                     {related.summary}
                   </p>
                 </div>
-                <span className="text-xs font-sans uppercase tracking-[0.12em] font-semibold text-[#2A2320] group-hover:text-[#C96374] transition-colors inline-flex items-center gap-1 mt-4">
+                <span className="text-xs font-sans uppercase tracking-[0.12em] font-semibold text-[#C96374] group-hover:text-[#A64757] transition-colors inline-flex items-center gap-1 mt-4">
                   <span>Read Article</span>
                   <span>→</span>
                 </span>
@@ -263,10 +263,10 @@ export default async function BlogPostPage({ params }: Props) {
         </section>
 
         {/* Back link */}
-        <div className="pt-6">
+        <div className="pt-6 text-center">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-xs font-sans uppercase tracking-[0.16em] font-semibold text-[#556B3E] hover:text-[#2A2320] transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-sans uppercase tracking-[0.16em] font-semibold text-[#C96374] hover:text-[#2A2320] transition-colors"
           >
             <ArrowLeft size={14} />
             <span>Back to All Journal Articles</span>
@@ -274,15 +274,15 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
       </main>
 
-      {/* Editorial Footer */}
-      <footer className="w-full bg-[#201C1A] text-[#F5EFE6]/60 border-t border-white/10 py-12 px-6 text-center text-xs mt-16">
+      {/* Editorial Footer (Warm Rose Palette) */}
+      <footer className="w-full bg-[#FAF4F0] text-[#2A2320]/75 border-t border-[#C96374]/20 py-12 px-6 text-center text-xs mt-16">
         <div className="max-w-4xl mx-auto flex flex-col gap-4 items-center">
           <div className="flex items-center gap-6 text-xs uppercase tracking-[0.15em]">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <Link href="/#free-guides" className="hover:text-white transition-colors">Free Guides</Link>
-            <Link href="/blog" className="text-[#92A975] hover:text-white transition-colors">Journal</Link>
+            <Link href="/" className="hover:text-[#C96374] transition-colors">Home</Link>
+            <Link href="/#free-guides" className="hover:text-[#C96374] transition-colors">Free Guides</Link>
+            <Link href="/blog" className="text-[#C96374] font-bold transition-colors">Journal</Link>
           </div>
-          <p className="text-[#F5EFE6]/30 text-[10px]">
+          <p className="text-[#7E726B] text-[10px]">
             © {new Date().getFullYear()} FortyWell. All rights reserved.
           </p>
         </div>

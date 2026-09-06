@@ -101,6 +101,8 @@ export default function PayPalCheckout({
                   createOrder={async () => {
                     setErrorMessage(null);
                     setIsProcessing(true);
+                    // Meta Pixel: InitiateCheckout
+                    try { (window as any).fbq('track', 'InitiateCheckout', { content_name: productName, value: parseFloat(amount), currency: 'USD' }); } catch (_) {}
                     try {
                       const res = await fetch('/api/paypal/create-order', {
                         method: 'POST',
@@ -132,6 +134,8 @@ export default function PayPalCheckout({
 
                       const details = await res.json();
                       if (details.status === 'COMPLETED' || res.ok) {
+                        // Meta Pixel: Purchase
+                        try { (window as any).fbq('track', 'Purchase', { content_name: productName, value: parseFloat(amount), currency: 'USD' }); } catch (_) {}
                         setPaymentSuccess(true);
                         setOrderDetails(details);
                         if (onSuccess) onSuccess(details);
@@ -176,6 +180,8 @@ export default function PayPalCheckout({
                   createOrder={async () => {
                     setErrorMessage(null);
                     setIsProcessing(true);
+                    // Meta Pixel: InitiateCheckout
+                    try { (window as any).fbq('track', 'InitiateCheckout', { content_name: productName, value: parseFloat(amount), currency: 'USD' }); } catch (_) {}
                     try {
                       const res = await fetch('/api/paypal/create-order', {
                         method: 'POST',
@@ -207,6 +213,8 @@ export default function PayPalCheckout({
 
                       const details = await res.json();
                       if (details.status === 'COMPLETED' || res.ok) {
+                        // Meta Pixel: Purchase
+                        try { (window as any).fbq('track', 'Purchase', { content_name: productName, value: parseFloat(amount), currency: 'USD' }); } catch (_) {}
                         setPaymentSuccess(true);
                         setOrderDetails(details);
                         if (onSuccess) onSuccess(details);

@@ -125,6 +125,9 @@ export const metadata: Metadata = {
   },
   verification: {
     google: 'WRYSzuwisnZSz8EG0lIXJRr7vct0bKbcHYiV1yzFjNA',
+    other: {
+      'p:domain_verify': '6b263a6919eec1afe84d8d1c457c4663',
+    },
   },
 };
 
@@ -314,6 +317,8 @@ export default function RootLayout({
       <head>
         {/* Google Site Verification (Google Merchant Center & Search Console) */}
         <meta name="google-site-verification" content="WRYSzuwisnZSz8EG0lIXJRr7vct0bKbcHYiV1yzFjNA" />
+        {/* Pinterest Domain Verification */}
+        <meta name="p:domain_verify" content="6b263a6919eec1afe84d8d1c457c4663" />
         {/* Preconnect to external origins to eliminate render-blocking latency */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

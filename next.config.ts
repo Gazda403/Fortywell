@@ -33,20 +33,18 @@ const nextConfig: NextConfig = {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=()',
           },
-        ],
-      },
-      {
-        // Cache immutable static assets (JS/CSS chunks) for 1 year
-        source: '/_next/static/(.*)',
-        headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            key: 'Strict-Transport-Security',
+            value: 'max-age=31536000; includeSubDomains; preload',
+          },
+          {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on',
           },
         ],
       },
       {
-        // Cache public images aggressively
+        // Cache public images and fonts aggressively
         source: '/(.*\\.(?:png|jpg|jpeg|gif|ico|svg|webp|avif|mp4|woff2?))',
         headers: [
           {

@@ -25,6 +25,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
+  let isoDate = '2026-09-05T00:00:00.000Z';
+  try {
+    isoDate = new Date(post.publishedAt).toISOString();
+  } catch {
+    // fallback
+  }
+
+  const ogImageUrl = 'https://fortywell-app.vercel.app/0709.png';
+
   return {
     title: `${post.title} — FortyWell Journal`,
     description: post.summary,
@@ -35,14 +44,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: post.title,
       description: post.summary,
       url: `https://fortywell-app.vercel.app/blog/${post.slug}`,
+      siteName: 'FortyWell',
       type: 'article',
-      publishedTime: post.publishedAt,
+      publishedTime: isoDate,
+      modifiedTime: isoDate,
+      section: post.category,
+      tags: [post.category, 'Women Over 40', 'Cortisol', 'Hormone Health', 'Somatic Movement'],
       authors: [post.author.name],
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: `${post.title} - FortyWell Clinical Journal`,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
       description: post.summary,
+      images: [ogImageUrl],
+      creator: '@fortywell',
     },
   };
 }
@@ -57,26 +80,93 @@ export default async function BlogPostPage({ params }: Props) {
 
   const relatedPosts = BLOG_POSTS.filter((p) => p.slug !== post.slug).slice(0, 2);
 
+  let isoPublished = '2026-09-05T00:00:00.000Z';
+  try {
+    isoPublished = new Date(post.publishedAt).toISOString();
+  } catch {
+    // fallback
+  }
+
+  const articleUrl = `https://fortywell-app.vercel.app/blog/${post.slug}`;
+  const ogImageUrl = 'https://fortywell-app.vercel.app/0709.png';
+
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: post.title,
-    description: post.summary,
-    datePublished: post.publishedAt,
-    author: {
-      '@type': 'Person',
-      name: post.author.name,
-      jobTitle: post.author.role,
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'FortyWell',
-      url: 'https://fortywell-app.vercel.app',
-    },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `https://fortywell-app.vercel.app/blog/${post.slug}`,
-    },
+    '@graph': [
+      // 1. Article / BlogPosting entity
+      {
+        '@type': 'BlogPosting',
+        '@id': `${articleUrl}#article`,
+        isPartOf: {
+          '@type': 'WebSite',
+          '@id': 'https://fortywell-app.vercel.app/#website',
+          name: 'FortyWell',
+        },
+        headline: post.title,
+        alternativeHeadline: post.subtitle,
+        description: post.summary,
+        inLanguage: 'en-US',
+        datePublished: isoPublished,
+        dateModified: isoPublished,
+        articleSection: post.category,
+        keywords: [post.category, 'Women Over 40', 'Cortisol Regulation', 'Perimenopause', 'Somatic Strength'].join(', '),
+        image: [ogImageUrl],
+        author: {
+          '@type': 'Person',
+          name: post.author.name,
+          jobTitle: post.author.role,
+          worksFor: {
+            '@type': 'Organization',
+            name: 'FortyWell',
+          },
+        },
+        reviewedBy: {
+          '@type': 'Organization',
+          name: post.medicalReviewer,
+          url: 'https://fortywell-app.vercel.app/#organization',
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'FortyWell',
+          url: 'https://fortywell-app.vercel.app',
+          logo: {
+            '@type': 'ImageObject',
+            url: 'https://fortywell-app.vercel.app/logo.png',
+            width: 512,
+            height: 512,
+          },
+        },
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': articleUrl,
+        },
+      },
+      // 2. BreadcrumbList for SERP navigation
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${articleUrl}#breadcrumb`,
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://fortywell-app.vercel.app',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'The FortyWell Journal',
+            item: 'https://fortywell-app.vercel.app/blog',
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: post.title,
+            item: articleUrl,
+          },
+        ],
+      },
+    ],
   };
 
   return (
@@ -224,9 +314,35 @@ export default async function BlogPostPage({ params }: Props) {
           </a>
         </div>
 
+        {/* ── INTERNAL LINK HUB (TOPICAL EQUITY & HIGH-INTENT CONVERSION) ── */}
+        <div className="bg-[#F5EFE6] border border-[#3A3532]/10 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 my-2">
+          <div className="flex flex-col gap-2 text-center md:text-left">
+            <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#92A975]">
+              Diagnostic Tool
+            </span>
+            <h4 className="font-editorial text-2xl text-[#2A2320] font-light">
+              Are your symptoms driven by high cortisol?
+            </h4>
+            <p className="text-xs md:text-sm text-[#5A4F48] max-w-md font-light">
+              Take our free 2-minute clinical self-assessment to identify lower-body fluid retention triggers and calibrate your 15-minute daily movement reset.
+            </p>
+          </div>
+          <Link
+            href="/#pillars"
+            className="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#3A3532] text-[#F5EFE6] hover:bg-[#262220] text-xs uppercase tracking-widest font-medium transition-all shadow-xs"
+          >
+            <span>Start Assessment</span>
+            <ChevronRight size={14} />
+          </Link>
+        </div>
+
         {/* Medical Disclaimer */}
         <div className="p-6 rounded-2xl bg-white/60 border border-[#2A2320]/10 text-xs text-[#7E726B] leading-relaxed">
-          <strong>Medical Disclaimer:</strong> The clinical concepts discussed in this article are for informational and educational purposes only. They are not intended as a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.
+          <strong>Medical Disclaimer:</strong> The clinical concepts discussed in this article are for informational and educational purposes only. They are not intended as a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition. Read our full{' '}
+          <Link href="/disclaimer" className="text-[#C96374] underline hover:opacity-80">
+            Medical & Clinical Disclaimer
+          </Link>
+          .
         </div>
 
         {/* ── RELATED ARTICLES ── */}

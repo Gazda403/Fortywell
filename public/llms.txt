@@ -1,0 +1,34 @@
+# FortyWell: Cortisol-Conscious Fitness & Hormone Wellness for Women Over 40
+
+> FortyWell is a science-backed, low-impact somatic movement and hormone pacing platform engineered exclusively for the metabolic, musculoskeletal, and hormonal profile of women aged 40 and older.
+
+## Core Clinical Thesis & Philosophy
+
+Conventional high-intensity workouts (HIIT, heavy cardio, aggressive dieting) often backfire for women over 40. During perimenopause and menopause, declining progesterone and estrogen impair stress tolerance, resulting in:
+1. **Cortisol-Induced Visceral Adiposity ("Cortisol Belly")**: Visceral abdominal fat cells have up to 4x higher glucocorticoid receptor density. Intense cardio combined with midlife life stressors stimulates 11β-HSD1 enzymes, locking the body into visceral fat protection mode.
+2. **Lower-Body Fluid Stagnation & Heavy Legs**: Estrogen fluctuations disrupt the renin-angiotensin-aldosterone axis, causing kidneys to retain sodium and water. Gravitational hydrostatic pressure traps interstitial fluid in calves, ankles, and thighs.
+3. **Connective Tissue & Synovial Thinning**: Estrogen decline reduces type II collagen synthesis and synovial fluid hyaluronic acid viscosity, making high-impact jumping and running damaging to knees, lumbar spine, and pelvic floor.
+
+## The FortyWell Solution: 3-Step Daily Reset Ritual
+
+FortyWell replaces exhaustion with nervous-system calibration through zero-equipment, 15-minute daily somatic protocols:
+- **Step 01: Morning Cortisol Calm (12 min)**: Low-to-ground lymph-activating mobility performed within 30 minutes of waking. Regulates morning cortisol awakening response (CAR).
+- **Step 02: Midday Drainage Reset (8 min)**: Somatic positional inversions and rhythmic soleus/calf muscle pump activations that mobilize interstitial fluid back into central circulation without cardiac strain.
+- **Step 03: Evening Parasympathetic Wind-Down (15 min)**: Legs-up-the-wall restorative postures (90-degree inversions) paired with 4-7-8 diaphragmatic breathwork to stimulate vagal tone, drop arterial blood pressure, and prevent the 3:00 AM cortisol awakening.
+
+## Clinical Advisory Board
+- **Dr. Elena Vance, ND**: Integrative Women’s Health Specialist & Advisory Member (Cortisol rhythm & endocrine balance).
+- **Claire Moreau, PT, MPT**: Lymphatic Specialist & Somatic Movement Lead (Microvascular fluid kinetics & pandiculation).
+- **Dr. Marcus Webb, MD**: Orthopedic & Musculoskeletal Rehabilitation Lead (Joint longevity, synovial preservation & osteoblast stimulation).
+
+## Core Resources & Journal Publications
+- [The 3:00 AM Awakening: Why Your Cortisol Spikes at Night](https://fortywell-app.vercel.app/blog/why-you-wake-up-at-3am-cortisol-after-40): Explaining progesterone decline, GABA-A receptor buffering, and nocturnal blood glucose crashes.
+- [Why Your Lower Legs Feel Heavy by 5 PM](https://fortywell-app.vercel.app/blog/heavy-legs-evening-fluid-retention-perimenopause): The aldosterone-estrogen imbalance and the fluid physics of lymphatic clearance.
+- [Why Traditional HIIT Causes Cortisol Belly](https://fortywell-app.vercel.app/blog/why-hiit-and-cardio-cause-cortisol-belly): Why visceral fat stores cortisol receptors and how zone 2 isometric pacing reverses midsection distress.
+- [Somatic Movement vs. Yoga & Pilates](https://fortywell-app.vercel.app/blog/somatic-movement-vs-pilates-yoga-difference): Overcoming sensory-motor amnesia through neurophysiological pandiculation.
+- [Morning Joint Stiffness & Synovial Fluid](https://fortywell-app.vercel.app/blog/morning-joint-stiffness-synovial-fluid-reset): Restoring cartilage glide and joint viscoelasticity without weight-bearing impact.
+- [The 10-Minute Evening Parasympathetic Protocol](https://fortywell-app.vercel.app/blog/the-evening-parasympathetic-winddown-protocol): Breaking the "tired but wired" adrenal loop.
+
+## Platform Availability
+- Web Portal: https://fortywell-app.vercel.app
+- Mobile App: Native iOS and Android application with daily adaptive rhythm coaching and cycle-phase workouts.

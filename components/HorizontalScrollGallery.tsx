@@ -235,7 +235,13 @@ export default function HorizontalScrollGallery() {
                   style={{ clipPath: 'inset(0 100% 0 0)', willChange: 'clip-path' }}
                 >
                   <div className="inner-img absolute inset-0 flex items-center justify-center" style={{ scale: 1.15, willChange: 'transform' }}>
-                    <Image src={card.image} alt={card.title} fill className="object-cover" sizes="(max-width: 768px) 80vw, (max-width: 1024px) 45vw, 36vw" />
+                    <Image
+                      src={card.image}
+                      alt={`FortyWell ${card.step}: ${card.title} — ${card.benefit}`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 80vw, (max-width: 1024px) 45vw, 36vw"
+                    />
                     <div className="absolute inset-0 bg-[#3A3532]/20 mix-blend-multiply" />
                   </div>
                 </div>
@@ -293,7 +299,7 @@ export default function HorizontalScrollGallery() {
               <div className="relative w-full" style={{ paddingBottom: '62%' }}>
                 <Image
                   src={card.image}
-                  alt={card.title}
+                  alt={`FortyWell ${card.step}: ${card.title} — ${card.benefit}`}
                   fill
                   className="object-cover object-center"
                   sizes="100vw"

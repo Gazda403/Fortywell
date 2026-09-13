@@ -214,7 +214,7 @@ export default function HeroSection() {
         {/* The ending image, sits behind the video */}
         <Image
           src="/0709.png"
-          alt="Fortywell wellness after-video moment"
+          alt="FortyWell cortisol-conscious movement and hormone wellness for women over 40"
           fill
           priority
           className="object-cover object-center"
@@ -252,7 +252,7 @@ export default function HeroSection() {
           <div className="flex items-center gap-3">
             <Image
               src="/logo.png"
-              alt="Fortywell logo"
+              alt="FortyWell official emblem"
               width={36}
               height={36}
               priority
@@ -370,22 +370,25 @@ export default function HeroSection() {
 
         {/* Main hero copy */}
         <div className="flex flex-col gap-6 md:gap-8 max-w-6xl">
-          {/* Tagline */}
-          <h2
+          {/* Tagline kicker (Accessible span, no H2 before H1) */}
+          <span
             ref={taglineRef}
-            className="text-[#92A975] text-xs tracking-[0.25em] uppercase font-sans opacity-0 m-0"
+            className="text-[#92A975] text-xs tracking-[0.25em] uppercase font-sans font-medium opacity-0 m-0 inline-block"
           >
-            Cortisol-Conscious Wellness
-          </h2>
+            Cortisol-Conscious Wellness & Hormone Calibration
+          </span>
 
-          {/* Display title */}
+          {/* Display title (H1) with screen-reader friendly primary entity target */}
           <h1
             ref={titleWrapRef}
             className="clip-overflow flex flex-wrap gap-x-6 md:gap-x-10 m-0"
-            aria-label="Fortywell"
+            aria-label="FortyWell — Cortisol-Conscious Fitness & Hormone Wellness for Women Over 40"
           >
+            <span className="sr-only">
+              FortyWell — Cortisol-Conscious Fitness & Hormone Wellness for Women Over 40
+            </span>
             {heroWords.map((word) => (
-              <div key={word} className="overflow-hidden">
+              <div key={word} className="overflow-hidden" aria-hidden="true">
                 <span
                   className="hero-word hero-title inline-block text-[clamp(4.5rem,13vw,14rem)] opacity-0"
                   style={{ willChange: 'transform, opacity' }}

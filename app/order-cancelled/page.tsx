@@ -3,6 +3,10 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Order Cancelled — FortyWell Apothecary',
   description: 'Your FortyWell order was cancelled.',
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 interface PageProps {

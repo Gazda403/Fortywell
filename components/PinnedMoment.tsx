@@ -190,15 +190,15 @@ export default function PinnedMoment() {
       </div>
 
       {/* ── MOBILE: Clean single-column layout ─────────────────────── */}
-      <div className="md:hidden">
+      <div className="md:hidden" aria-hidden="true">
         {/* Mobile header block */}
         <div className="editorial-container pt-16 pb-12">
           <span className="text-[#92A975] text-xs tracking-[0.28em] uppercase font-sans block mb-5">
             The Biology
           </span>
-          <h2 className="font-editorial text-[#F5EFE6] text-4xl font-light leading-tight tracking-tight mb-6">
+          <div className="font-editorial text-[#F5EFE6] text-4xl font-light leading-tight tracking-tight mb-6">
             Why your body holds on — and what it actually needs
-          </h2>
+          </div>
           <p className="text-[#F5EFE6]/50 text-sm leading-relaxed font-sans font-light mb-8">
             Fortywell begins where conventional fitness advice ends. We built
             our entire methodology around the hormonal and metabolic reality

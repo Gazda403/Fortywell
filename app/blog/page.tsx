@@ -16,7 +16,23 @@ export const metadata: Metadata = {
     description:
       'Explore clinical guidance on cortisol belly, 3 AM wake-ups, swollen legs, and hormone-conscious somatic strength.',
     url: 'https://fortywell-app.vercel.app/blog',
+    siteName: 'FortyWell',
     type: 'website',
+    images: [
+      {
+        url: 'https://fortywell-app.vercel.app/0709.png',
+        width: 1200,
+        height: 630,
+        alt: 'The FortyWell Journal - Evidence-Informed Insights for Women Over 40',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'The FortyWell Journal — Science & Movement for Women Over 40',
+    description: 'Evidence-informed clinical insights on cortisol, heavy legs, and somatic movement for women 40+.',
+    images: ['https://fortywell-app.vercel.app/0709.png'],
+    creator: '@fortywell',
   },
 };
 
@@ -24,8 +40,56 @@ export default function BlogIndexPage() {
   const featuredPost = BLOG_POSTS[0];
   const remainingPosts = BLOG_POSTS.slice(1);
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'CollectionPage',
+        '@id': 'https://fortywell-app.vercel.app/blog#collection',
+        url: 'https://fortywell-app.vercel.app/blog',
+        name: 'The FortyWell Journal — Science, Hormones & Somatic Movement for Women 40+',
+        description: 'Evidence-informed clinical insights on cortisol management, lower-body fluid kinetics, heavy legs relief, and joint-safe somatic strength training for women over 40.',
+        isPartOf: {
+          '@type': 'WebSite',
+          '@id': 'https://fortywell-app.vercel.app/#website',
+        },
+        hasPart: BLOG_POSTS.map((post) => ({
+          '@type': 'BlogPosting',
+          headline: post.title,
+          url: `https://fortywell-app.vercel.app/blog/${post.slug}`,
+          datePublished: new Date(post.publishedAt).toISOString(),
+          description: post.summary,
+        })),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': 'https://fortywell-app.vercel.app/blog#breadcrumb',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://fortywell-app.vercel.app',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'The FortyWell Journal',
+            item: 'https://fortywell-app.vercel.app/blog',
+          },
+        ],
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-[#FAF7F2] text-[#2A2320] flex flex-col font-sans selection:bg-[#C96374]/20">
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* Universal Blog Navigation */}
       <BlogNavbar />
 

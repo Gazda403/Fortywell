@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useEffect } from 'react';
+import Link from 'next/link';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -242,17 +243,35 @@ export default function LeadCaptureFooter() {
         <span className="text-[#F5EFE6]/40 text-xs font-sans tracking-wider">
           © 2026 Fortywell. All rights reserved.
         </span>
-        <div className="flex items-center gap-8">
-          {['Privacy Policy', 'Terms of Service', 'Contact'].map((link) => (
-            <a
-              key={link}
-              href="#"
-              className="text-[#F5EFE6]/40 text-xs font-sans tracking-wider hover:text-[#F5EFE6]/70 transition-colors duration-300"
-              data-hover="grow"
-            >
-              {link}
-            </a>
-          ))}
+        <div className="flex flex-wrap items-center gap-6 md:gap-8">
+          <Link
+            href="/privacy"
+            className="text-[#F5EFE6]/40 text-xs font-sans tracking-wider hover:text-[#92A975] transition-colors duration-300"
+            data-hover="grow"
+          >
+            Privacy Policy
+          </Link>
+          <Link
+            href="/terms"
+            className="text-[#F5EFE6]/40 text-xs font-sans tracking-wider hover:text-[#92A975] transition-colors duration-300"
+            data-hover="grow"
+          >
+            Terms of Service
+          </Link>
+          <Link
+            href="/disclaimer"
+            className="text-[#F5EFE6]/40 text-xs font-sans tracking-wider hover:text-[#92A975] transition-colors duration-300"
+            data-hover="grow"
+          >
+            Medical Disclaimer
+          </Link>
+          <a
+            href="mailto:support@fortywell.com"
+            className="text-[#F5EFE6]/40 text-xs font-sans tracking-wider hover:text-[#92A975] transition-colors duration-300"
+            data-hover="grow"
+          >
+            Contact
+          </a>
         </div>
       </div>
     </footer>

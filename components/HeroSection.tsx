@@ -206,7 +206,10 @@ export default function HeroSection() {
       });
     }, { scope: sectionRef });
 
-  const heroWords = ['Reclaim', 'How', 'Your', 'Body', 'Was', 'Built', 'to', 'Feel'];
+  const heroLines = [
+    ['Reclaim', 'How', 'Your', 'Body'],
+    ['Was', 'Built', 'to', 'Feel'],
+  ];
 
   return (
     <section
@@ -437,20 +440,24 @@ export default function HeroSection() {
           {/* Display title (H1) with screen-reader friendly primary entity target */}
           <h1
             ref={titleWrapRef}
-            className="clip-overflow flex flex-wrap gap-x-2.5 sm:gap-x-3.5 md:gap-x-4 lg:gap-x-5 gap-y-1 sm:gap-y-1.5 md:gap-y-2 m-0 max-w-5xl"
+            className="clip-overflow flex flex-col gap-1 sm:gap-2 m-0 max-w-6xl"
             aria-label="Reclaim How Your Body Was Built to Feel — FortyWell Cortisol-Conscious Fitness & Hormone Wellness for Women Over 40"
           >
             <span className="sr-only">
               Reclaim How Your Body Was Built to Feel — FortyWell Cortisol-Conscious Fitness & Hormone Wellness for Women Over 40
             </span>
-            {heroWords.map((word, index) => (
-              <div key={word + index} className="overflow-hidden inline-block pb-1.5 -mb-1.5" aria-hidden="true">
-                <span
-                  className="hero-word hero-title inline-block text-[clamp(2.5rem,5.6vw,5.6rem)] leading-[1.04] opacity-0"
-                  style={{ willChange: 'transform, opacity' }}
-                >
-                  {word}
-                </span>
+            {heroLines.map((line, lineIdx) => (
+              <div key={lineIdx} className="flex flex-wrap gap-x-3 sm:gap-x-4 md:gap-x-5 lg:gap-x-6">
+                {line.map((word, wordIdx) => (
+                  <div key={word + wordIdx} className="overflow-hidden inline-block pb-1.5 -mb-1.5" aria-hidden="true">
+                    <span
+                      className="hero-word hero-title inline-block text-[clamp(2.75rem,7vw,7.2rem)] leading-[0.98] opacity-0"
+                      style={{ willChange: 'transform, opacity' }}
+                    >
+                      {word}
+                    </span>
+                  </div>
+                ))}
               </div>
             ))}
           </h1>

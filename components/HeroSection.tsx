@@ -130,6 +130,14 @@ function MagneticButton({ children, className = '', onClick, href, target, rel }
   );
 }
 
+// ─── Social Proof Avatars ───────────────────────────────────────────────────
+const SOCIAL_PROOF_AVATARS = [
+  { src: '/avatars/avatar-1.jpg', alt: 'FortyWell community member' },
+  { src: '/avatars/avatar-2.jpg', alt: 'FortyWell community member' },
+  { src: '/avatars/avatar-3.jpg', alt: 'FortyWell community member' },
+  { src: '/avatars/avatar-4.jpg', alt: 'FortyWell community member' },
+];
+
 // ─── Hero Section ────────────────────────────────────────────────────────────
 
 export default function HeroSection() {
@@ -139,6 +147,7 @@ export default function HeroSection() {
   const titleWrapRef = useRef<HTMLDivElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
   const taglineRef = useRef<HTMLHeadingElement>(null);
+  const trustRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -169,19 +178,19 @@ export default function HeroSection() {
           y: '0%',
           opacity: 1,
           scale: 1,
-          duration: 1.1,
-          stagger: 0.09,
+          duration: 1.0,
+          stagger: 0.06,
           ease: 'power3.out',
         },
         '-=0.8',
       );
 
-      // Tagline + subtitle + cta
+      // Tagline + trust badge + subtitle + cta
       tl.fromTo(
-        [taglineRef.current, subRef.current, ctaRef.current],
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.9, stagger: 0.15, ease: 'power2.out' },
-        '-=0.5',
+        [taglineRef.current, trustRef.current, subRef.current, ctaRef.current],
+        { y: 18, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.85, stagger: 0.12, ease: 'power2.out' },
+        '-=0.6',
       );
 
       // Subtle hero image parallax on scroll
@@ -197,7 +206,7 @@ export default function HeroSection() {
       });
     }, { scope: sectionRef });
 
-  const heroWords = ['FORTY', 'WELL'];
+  const heroWords = ['Reclaim', 'How', 'Your', 'Body', 'Was', 'Built', 'to', 'Feel'];
 
   return (
     <section
@@ -369,7 +378,7 @@ export default function HeroSection() {
         </header>
 
         {/* Main hero copy */}
-        <div className="flex flex-col gap-6 md:gap-8 max-w-6xl">
+        <div className="flex flex-col gap-5 md:gap-6 max-w-6xl">
           {/* Tagline kicker (Accessible span, no H2 before H1) */}
           <span
             ref={taglineRef}
@@ -378,19 +387,66 @@ export default function HeroSection() {
             Cortisol-Conscious Wellness & Hormone Calibration
           </span>
 
+          {/* Social Proof Trust Line directly above the headline */}
+          <div
+            ref={trustRef}
+            className="flex items-center gap-3 sm:gap-3.5 flex-wrap opacity-0"
+          >
+            {/* 4 Overlapping profile avatars */}
+            <div className="flex items-center -space-x-2.5">
+              {SOCIAL_PROOF_AVATARS.map((avatar, idx) => (
+                <div
+                  key={idx}
+                  className="relative w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden ring-2 ring-[#3A3532] shadow-md shrink-0 bg-[#2A2624]"
+                >
+                  <Image
+                    src={avatar.src}
+                    alt={avatar.alt}
+                    width={32}
+                    height={32}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* Stars & rating text */}
+            <div className="flex items-center gap-2 sm:gap-2.5">
+              {/* 5 Warm Gold Stars */}
+              <div className="flex items-center gap-0.5 text-[#E5A93C]" aria-label="5 out of 5 stars">
+                {[...Array(5)].map((_, i) => (
+                  <svg
+                    key={i}
+                    className="w-3.5 h-3.5 fill-current drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"
+                    viewBox="0 0 20 20"
+                    aria-hidden="true"
+                  >
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+
+              {/* Trust Copy */}
+              <span className="text-[#F5EFE6]/90 text-xs sm:text-sm font-sans tracking-wide">
+                <span className="font-semibold text-white">Rated 4.9/5</span> by{' '}
+                <span className="font-semibold text-white">12,000+</span> Women Over 40
+              </span>
+            </div>
+          </div>
+
           {/* Display title (H1) with screen-reader friendly primary entity target */}
           <h1
             ref={titleWrapRef}
-            className="clip-overflow flex flex-wrap gap-x-6 md:gap-x-10 m-0"
-            aria-label="FortyWell — Cortisol-Conscious Fitness & Hormone Wellness for Women Over 40"
+            className="clip-overflow flex flex-wrap gap-x-2.5 sm:gap-x-3.5 md:gap-x-4 lg:gap-x-5 gap-y-1 sm:gap-y-1.5 md:gap-y-2 m-0 max-w-5xl"
+            aria-label="Reclaim How Your Body Was Built to Feel — FortyWell Cortisol-Conscious Fitness & Hormone Wellness for Women Over 40"
           >
             <span className="sr-only">
-              FortyWell — Cortisol-Conscious Fitness & Hormone Wellness for Women Over 40
+              Reclaim How Your Body Was Built to Feel — FortyWell Cortisol-Conscious Fitness & Hormone Wellness for Women Over 40
             </span>
-            {heroWords.map((word) => (
-              <div key={word} className="overflow-hidden" aria-hidden="true">
+            {heroWords.map((word, index) => (
+              <div key={word + index} className="overflow-hidden inline-block pb-1.5 -mb-1.5" aria-hidden="true">
                 <span
-                  className="hero-word hero-title inline-block text-[clamp(4.5rem,13vw,14rem)] opacity-0"
+                  className="hero-word hero-title inline-block text-[clamp(2.5rem,5.6vw,5.6rem)] leading-[1.04] opacity-0"
                   style={{ willChange: 'transform, opacity' }}
                 >
                   {word}
@@ -400,7 +456,7 @@ export default function HeroSection() {
           </h1>
           
           {/* Anchor rule for title */}
-          <div className="w-32 h-px bg-[#F5EFE6]/20 mt-2 mb-2 hidden md:block" />
+          <div className="w-32 h-px bg-[#F5EFE6]/20 mt-1 mb-1 hidden md:block" />
 
           {/* Subheadline */}
           <p
@@ -413,7 +469,7 @@ export default function HeroSection() {
 
           {/* CTA */}
           <div ref={ctaRef} className="opacity-0 pt-2">
-            <MagneticButton href="https://fortywell-app.vercel.app/">Install FortyWell</MagneticButton>
+            <MagneticButton href="https://fortywell-app.vercel.app/">RECLAIM YOUR BODY</MagneticButton>
           </div>
         </div>
 

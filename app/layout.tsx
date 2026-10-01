@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Playfair_Display, Instrument_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import Script from "next/script";
 import MetaPixel from "@/components/MetaPixel";
 import "./globals.css";
 
@@ -258,6 +259,14 @@ export default function RootLayout({
             alt=""
           />
         </noscript>
+        {/* Lemon Squeezy Affiliate Tracking */}
+        <Script id="lemon-affiliate-config" strategy="beforeInteractive">
+          {`window.lemonSqueezyAffiliateConfig = { store: "fortywell" };`}
+        </Script>
+        <Script
+          src="https://lmsqueezy.com/affiliate.js"
+          strategy="afterInteractive"
+        />
       </head>
       <body className="grain">
         {children}
